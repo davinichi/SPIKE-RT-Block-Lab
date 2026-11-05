@@ -1,0 +1,7 @@
+import http from 'node:http';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {readFile} from 'node:fs/promises';
+const web=path.resolve(fileURLToPath(new URL('./web/',import.meta.url)));
+export async function startServer(port=0){const server=http.createServer(async(req,res)=>{try{const url=new URL(req.url,'http://localhost');const file=path.resolve(web,'.'+decodeURIComponent(url.pathname==='/'?'/index.html':url.pathname));if(!file.startsWith(web+path.sep))throw Error('outside');const body=await readFile(file);res.setHeader('Content-Type',({'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.gif':'image/gif','.jpg':'image/jpeg','.mp3':'audio/mpeg','.woff2':'font/woff2','.txt':'text/plain; charset=utf-8','.cdl':'text/plain; charset=utf-8'})[path.extname(file)]??'application/octet-stream');res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'");res.end(body);}catch{res.writeHead(404);res.end('Not found');}});await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(port,'127.0.0.1',resolve);});return {server,url:`http://127.0.0.1:${server.address().port}`};}
+if(process.argv[1]===fileURLToPath(import.meta.url)){const {url}=await startServer(Number(process.env.PORT??8778));console.log(url);}

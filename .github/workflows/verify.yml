@@ -1,0 +1,92 @@
+name: Verify and build
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm test
+      - run: node export-samples.mjs generated
+      - run: python3 tests/compile-generated.py
+        env:
+          HOST_CC: gcc
+  firmware:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: editor
+      - uses: actions/checkout@v4
+        with:
+          repository: spike-rt/spike-rt
+          ref: v0.2.0
+          submodules: recursive
+          path: sdk
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: sudo apt-get update && sudo apt-get install -y gcc-arm-none-eabi libnewlib-arm-none-eabi ruby ruby-dev
+      - run: sudo gem install shell --no-document
+      - run: node editor/export-samples.mjs sdk/user_apps
+      - name: Build official kernel and sample applications
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd sdk
+          mkdir -p build/obj-primehub_kernel
+          cd build/obj-primehub_kernel
+          ruby ../../asp3/configure.rb -T primehub_gcc -f -m ../../common/kernel.mk
+          make -j2 libkernel.a
+          cd ../..
+          mkdir -p ../firmware
+          for sample in display motor distance myblock; do
+            mkdir -p "build/obj-primehub_${sample}"
+            cd "build/obj-primehub_${sample}"
+            ruby ../../asp3/configure.rb -T primehub_gcc -L ../obj-primehub_kernel -a "../../user_apps/${sample}" -A app -m ../../common/app.mk
+            make -j2
+            test -s asp.bin
+            cp asp.bin "../../../firmware/${sample}.bin"
+            cd ../..
+          done
+          cp LICENSE ReadMe_OSS.txt ../firmware/
+          git rev-parse HEAD > ../firmware/SPIKE-RT-COMMIT.txt
+          arm-none-eabi-gcc --version > ../firmware/TOOLCHAIN.txt
+          printf '%s\n' 'SPIKE-RT v0.2.0 and submodules: https://github.com/spike-rt/spike-rt/tree/v0.2.0' 'Generated sample source: this repository export-samples.mjs.' 'Hardware verification pending. All sources and upstream license notices must accompany redistribution.' > ../firmware/NOTICE.txt
+          cd ../firmware
+          sha256sum *.bin > SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sample-firmware
+          path: firmware/
+  windows:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm test
+      - run: npm install --no-save electron@45.2.1
+      - run: python package-release.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SBL-RT-Windows-0.1.0
+          path: release/*.zip*
+      - name: Publish prerelease
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: pwsh
+        run: gh release create $env:GITHUB_REF_NAME release/*.zip* --prerelease --title 'SBL-RT Windows 0.1.0 experimental' --notes 'Windows x64 prototype. Hub hardware verification is pending. Read the firmware guide before writing. The application is unsigned.'

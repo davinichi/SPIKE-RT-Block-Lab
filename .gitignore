@@ -1,0 +1,11 @@
+node_modules/
+smoke.png
+smoke-result.json
+smoke-launch.log
+startup-error.txt
+user-data/
+builds/
+*.zip
+*.exe
+*.dll
+generated/

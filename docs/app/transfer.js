@@ -1,0 +1,11 @@
+import {connectSpikeDfu} from './dfu.js';
+import {flashSpikeRtFirmware,SPIKE_RT_MAX_BYTES} from './dfuse.js';
+import {SpikeSerialConnection} from './serial.js';
+const $=id=>document.getElementById(id),log=s=>{$('log').textContent+='\n'+s;};let firmware=null,device=null,serial=null,busy=false;
+const refresh=()=>{$('flash').disabled=busy||!firmware||!device||!$('confirm').checked;};
+$('confirm').onchange=refresh;
+$('firmware').onchange=async e=>{firmware=null;$('confirm').checked=false;refresh();try{const f=e.target.files[0];if(!f)return;if(!f.name.endsWith('.bin')||f.size<8||f.size>SPIKE_RT_MAX_BYTES)throw Error('8バイト以上992KiB以下のasp.binを選んでください。');const bytes=await f.arrayBuffer();const v=new DataView(bytes),sp=v.getUint32(0,true),pc=v.getUint32(4,true);if(sp<0x20000000||sp>0x20050000||!(pc&1)||pc<0x08008000||pc>=0x08100000)throw Error('SPIKE-RT向けベクターテーブルを確認できません。');const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),v=>v.toString(16).padStart(2,'0')).join('');firmware=bytes;$('info').textContent=`${f.name}\n${f.size} bytes\nSHA-256 ${digest}\n書き込み先 0x08008000\nハードウェア未検証`;refresh();}catch(e){$('info').textContent=e.message;}};
+$('connect').onclick=async()=>{try{if(serial){await serial.close();serial=null;}device=await connectSpikeDfu({onLog:log});log('DFU選択: '+device.name);refresh();}catch(e){log(e.message);}};
+$('flash').onclick=async()=>{if(!firmware||!device||busy||!$('confirm').checked)return;if(!confirm('選択したHubのファームウェアを書き換えます。開始しますか？'))return;busy=true;refresh();$('firmware').disabled=true;$('connect').disabled=true;try{await flashSpikeRtFirmware(device,firmware,{onLog:log,onProgress:(phase,n,total)=>log(`${phase}: ${n}/${total}`)});log('DFU処理完了。再起動・表示・停止を実機で確認してください。');}catch(e){log('書き込み未完了: '+e.message);}finally{busy=false;device=null;$('confirm').checked=false;$('firmware').disabled=false;$('connect').disabled=false;refresh();}};
+$('serial').onclick=async()=>{try{if(busy)throw Error('書き込み終了後に接続してください。');if(serial)await serial.close();const p=await navigator.serial.requestPort();serial=await new SpikeSerialConnection(p,{onData:log,onError:e=>log(String(e)),onDisconnect:()=>{serial=null;log('切断');}}).open();log('USBログ接続済み 115200');}catch(e){log(e.message);}};
+$('closeSerial').onclick=async()=>{if(serial){await serial.close();serial=null;}};$('clear').onclick=()=>$('log').textContent='';
