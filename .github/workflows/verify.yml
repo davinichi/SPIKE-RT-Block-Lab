@@ -89,4 +89,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         shell: pwsh
-        run: gh release create $env:GITHUB_REF_NAME release/*.zip* --prerelease --title 'SBL-RT Windows 0.1.0 experimental' --notes 'Windows x64 prototype. Hub hardware verification is pending. Read the firmware guide before writing. The application is unsigned.'
+        run: |
+          gh release view $env:GITHUB_REF_NAME *> $null
+          if ($LASTEXITCODE -eq 0) {
+            gh release upload $env:GITHUB_REF_NAME release/*.zip*
+          } else {
+            gh release create $env:GITHUB_REF_NAME release/*.zip* --prerelease --title 'SBL-RT Windows 0.1.0 experimental' --notes 'Windows x64 prototype. Hub hardware verification is pending. Read the firmware guide before writing. The application is unsigned.'
+          }
