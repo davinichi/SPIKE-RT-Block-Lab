@@ -17,7 +17,7 @@ for name in ['web','tests']:
 for name in ['package.json','main.cjs','preload.cjs','server.mjs','build-service.mjs','README.md','THIRD_PARTY.md','RT-NOTICE.txt','TEST_RESULTS.md','export-samples.mjs']:
     shutil.copy2(root/name,app/name)
 shutil.copy2(root/'README.md',out/'README.md')
-archive=out.with_suffix('.zip')
+archive=out.parent/(out.name+'.zip')
 with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for p in out.rglob('*'):
         if p.is_file():z.write(p,p.relative_to(out.parent))
