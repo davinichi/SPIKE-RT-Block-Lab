@@ -1,4 +1,5 @@
 // Developer-only integration checks, invoked by the hidden Electron smoke runner.
+import {richSample} from './rich-blocks.js';
 const pause=()=>new Promise(resolve=>setTimeout(resolve,80));
 export async function checkCategory(index){
  const ws=window.sblTest.workspace,toolbox=ws.getToolbox(),items=toolbox.getToolboxItems();
@@ -23,6 +24,7 @@ export async function checkDialogsAndPreservation(){
  if(t.generate()!==null)throw Error('Unsupported/F program unexpectedly generated C');
  if(!t.project().workspace.blocks.blocks.some(b=>b.type==='lab_log_start'&&b.fields.NAME==='保持試験'))throw Error('Unsupported data was lost');
  if(t.workspace.getAllBlocks(false).find(b=>b.type==='lab_distance')?.getFieldValue('PORT')!=='F')throw Error('Port F was remapped');
+ for(const name of ['math','angle','sensor_number']){t.restore({...initial,workspace:richSample(name)});if(!t.generate())throw Error('Sample failed: '+name);if(name==='math'&&!t.workspace.getAllBlocks(false).some(b=>b.type==='procedures_defreturn'))throw Error('Sample still uses a legacy definition');}
  t.restore(initial);if(!t.generate())throw Error('Initial project no longer generates');
- return {myBlockDialog:true,canonicalDefinition:true,savedReloaded:true,unsupportedPreserved:true,portFPreserved:true,exportBlocked:true};
+ return {myBlockDialog:true,canonicalDefinition:true,savedReloaded:true,unsupportedPreserved:true,portFPreserved:true,exportBlocked:true,canonicalSamples:3};
 }

@@ -1,4 +1,4 @@
-# SBL-RT Windows 0.3.0
+# SBL-RT Windows 0.3.1
 
 SPIKE Prime Large Hub向けのブロック編集・C生成Windows試作版。指定された公開SBLのSites保存版23（commit 9c81c6fab69737319230440b38a215ba2ee7a3aa）を正本として、同じ15グループ・文言・順番・引数・選択肢を使います。実機未検証です。
 
@@ -37,7 +37,7 @@ TEST_RESULTS.mdとActionsの完了状態を確認してください。ビルド�
 
 LEGO公式アプリではありません。Fの制約を確認する際の参考資料: https://qiita.com/koushiro/items/480559806f5572902c5c
 
-## SBL UI contract in 0.3.0
+## SBL UI contract in 0.3.1
 
 The seven files in web/sbl-reference are unchanged copies of the retrieved published SBL source. provenance.json records their SHA-256 hashes. The previous local SBL 0.7.0 files match this published source. The live page itself returned 403; the authenticated Sites source repository supplied the saved version's exact commit. No SBL source or Site was edited.
 

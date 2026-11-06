@@ -58,11 +58,11 @@ export function generateProject(program,cdl){
  default:throw Error('未対応の命令です。');}}return text;}
  const procHeader='#pragma once\n#include <stdbool.h>\nbool sbl_program(void);\n'+[...ids.values()].map(id=>`bool ${id}(void);`).join('\n')+'\n';
  const myblocks='#include "sbl_myblocks.h"\n#include "sbl_rt_runtime.h"\n'+procs.map(p=>`\n/* My Block ${JSON.stringify(p.name).replaceAll('*/','* /')} */\nbool ${ids.get(p.name)}(void) {\n${seq(p.body)}    return true;\n}\n`).join('')+`\nbool sbl_program(void) {\n${seq(program.body)}    return true;\n}\n`;
- const app=`/* SBL-RT Windows 0.3.0 / SPIKE-RT v0.2.0. Hardware verification pending. */\n#include "app.h"\n#include "sbl_rt_runtime.h"\n#include "sbl_myblocks.h"\n#include <t_syslog.h>\nvoid main_task(intptr_t exinf) {\n    (void)exinf;\n    bool success = false;\n    if (!sbl_initialize()) goto cleanup;\n    syslog(LOG_NOTICE, "READY: press and release center button");\n    if (!await_start()) goto cleanup;\n    success = sbl_program();\ncleanup:\n    stop_all();\n    syslog(LOG_NOTICE, success ? "DONE" : "STOPPED / ERROR");\n    ext_tsk();\n}\n`;
+ const app=`/* SBL-RT Windows 0.3.1 / SPIKE-RT v0.2.0. Hardware verification pending. */\n#include "app.h"\n#include "sbl_rt_runtime.h"\n#include "sbl_myblocks.h"\n#include <t_syslog.h>\nvoid main_task(intptr_t exinf) {\n    (void)exinf;\n    bool success = false;\n    if (!sbl_initialize()) goto cleanup;\n    syslog(LOG_NOTICE, "READY: press and release center button");\n    if (!await_start()) goto cleanup;\n    success = sbl_program();\ncleanup:\n    stop_all();\n    syslog(LOG_NOTICE, success ? "DONE" : "STOPPED / ERROR");\n    ext_tsk();\n}\n`;
  if(typeof cdl!=='string'||!cdl.includes('kernel.cdl'))throw Error('構成テンプレートがありません。');
  return {'app.c':app,'sbl_myblocks.c':myblocks,'sbl_rt_runtime.c':runtime,'sbl_myblocks.h':procHeader,'sbl_rt_runtime.h':header+externs+nearDecl,
  'app.h':'#pragma once\n#include <kernel.h>\n#define MAIN_PRIORITY 5\n#define MAIN_STACK_SIZE 8192\n#ifndef TOPPERS_MACRO_ONLY\nextern void main_task(intptr_t exinf);\n#endif\n',
  'app.cfg':'INCLUDE("tecsgen.cfg");\n#include "app.h"\nCRE_TSK(APP_MAIN_TASK, { TA_ACT, 0, main_task, MAIN_PRIORITY, MAIN_STACK_SIZE, NULL });\n',
  'app.cdl':cdl,'Makefile.inc':'APPL_COBJS += sbl_myblocks.o sbl_rt_runtime.o\n',
- 'program.json':JSON.stringify(program,null,2)+'\n','target.json':JSON.stringify({generator:'SBL-RT Windows',version:'0.3.0',target:'SPIKE-RT',ref:'v0.2.0',hardwareTested:false},null,2)+'\n'};
+ 'program.json':JSON.stringify(program,null,2)+'\n','target.json':JSON.stringify({generator:'SBL-RT Windows',version:'0.3.1',target:'SPIKE-RT',ref:'v0.2.0',hardwareTested:false},null,2)+'\n'};
 }

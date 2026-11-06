@@ -111,12 +111,12 @@ export function workspaceProgramV2(ws){
 export function richSample(name){
  const num=n=>({shadow:{type:'math_number',fields:{NUM:n}}}),block=b=>({block:b});
  if(name==='math'){
-  const call={type:'sbl_call_value',fields:{NAME:'足す'},inputs:{ARG1:num(3),ARG2:num(4)}};
+  const call={type:'procedures_callreturn',extraState:{name:'足す',params:['入力1','入力2'],outputs:['答え'],output:0},inputs:{ARG0:num(3),ARG1:num(4)}};
   const show={type:'lab_display_number',inputs:{VALUE:block({type:'variables_get',fields:{VAR:{id:'result'}}})}};
   const repeat={type:'controls_repeat_ext',inputs:{TIMES:num(3),DO:block({type:'math_change',fields:{VAR:{id:'result'}},inputs:{DELTA:num(1)}})},next:block(show)};
   const set={type:'variables_set',fields:{VAR:{id:'result'}},inputs:{VALUE:block(call)},next:block(repeat)};
-  const add={type:'lab_op_add',inputs:{A:block({type:'sbl_parameter',fields:{INDEX:'0'}}),B:block({type:'sbl_parameter',fields:{INDEX:'1'}})}};
-  return {variables:[{name:'結果',id:'result'}],blocks:{languageVersion:0,blocks:[{type:'spike_start',x:40,y:40,next:block(set)},{type:'sbl_proc',x:550,y:40,fields:{NAME:'足す'},inputs:{BODY:block({type:'lab_return_value',inputs:{VALUE:block(add)}})}}]}};
+  const add={type:'lab_op_add',inputs:{A:block({type:'lab_argument',extraState:{parameterId:'arg1',name:'入力1'}}),B:block({type:'lab_argument',extraState:{parameterId:'arg2',name:'入力2'}})}};
+  return {variables:[{name:'結果',id:'result'},{name:'入力1',id:'arg1'},{name:'入力2',id:'arg2'}],blocks:{languageVersion:0,blocks:[{type:'spike_start',x:40,y:40,next:block(set)},{type:'procedures_defreturn',x:550,y:40,fields:{NAME:'足す'},extraState:{params:[{name:'入力1',id:'arg1'},{name:'入力2',id:'arg2'}],outputs:['答え']},inputs:{RETURN:block(add)}}]}};
  }
  if(name==='angle')return {blocks:{languageVersion:0,blocks:[{type:'spike_start',x:40,y:40,next:block({type:'lab_motor_pair_angle',fields:{PORTS:'A,B'},inputs:{SPEED:num(20),DEGREES:num(90)},next:block({type:'lab_motor_group_stop',fields:{PORTS:'A,B',MODE:'BRAKE'}})})}]}};
  if(name==='sensor_number')return {blocks:{languageVersion:0,blocks:[{type:'spike_start',x:40,y:40,next:block({type:'controls_if',inputs:{IF0:block({type:'lab_distance_valid',fields:{PORT:'D'}}),DO0:block({type:'lab_display_number',inputs:{VALUE:block({type:'math_constrain',inputs:{VALUE:block({type:'lab_distance',fields:{PORT:'D'}}),LOW:num(0),HIGH:num(99)}})}})}})}]}};

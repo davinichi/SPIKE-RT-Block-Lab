@@ -1,4 +1,4 @@
-# Validation status — SBL-RT 0.3.0
+# Validation status — SBL-RT 0.3.1
 
 ## Completed locally
 
@@ -6,7 +6,7 @@
 - Node.js 24: 20 tests pass. Automatic equality covers all 15 groups, names/order, 119 static palette entries, and 141 block-definition signatures: visible Japanese fields, menu options, input names/types, colours and connection shape. Random variable IDs are normalized. The fixture was generated from the separately retrieved source. Hash checks ensure the vendored files remain unmodified. Dynamic categories reuse the unchanged SBL callbacks.
 - Supported palette entries generate C; all unsupported palette entries load/save/reload and fail generation explicitly. Unsupported/F values remain saved without port substitution. SBL-format numeric variable identities, named arguments and procedure returns are tested, along with legacy SBL-RT loading. No claim is made that .spikelab/.ev3lab files are imported directly.
 - GCC 11 host integration: all three C translation units separately compile with -Wall -Wextra -Werror and link for ten samples. Thirteen fake-device executions pass, including stop during timed/angle motion, stalled-angle timeout, zero division, lazy Boolean evaluation and global end inside a procedure.
-- Windows Electron: 0.3.0 starts with sandbox enabled and GPU acceleration disabled. Fifteen categories open and draw; the SBL My Block dialog creates a canonical return definition, which saves/reloads. A named unsupported recording block and a distance sensor on F remain intact after reload and block C export. Normal projects still generate all eleven source/configuration files. Hidden integration runner exits with code 0. Screenshots reviewed. No ACL or security settings changed.
+- Windows Electron: 0.3.1 starts with sandbox enabled and GPU acceleration disabled. Fifteen categories open and draw; the SBL My Block dialog creates a canonical return definition, which saves/reloads. A named unsupported recording block and a distance sensor on F remain intact after reload and block C export. Normal projects still generate all eleven source/configuration files. Hidden integration runner exits with code 0. Screenshots reviewed. No ACL or security settings changed.
 
 ## Official target build and distribution
 
