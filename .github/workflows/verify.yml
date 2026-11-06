@@ -35,7 +35,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - run: sudo apt-get update && sudo apt-get install -y gcc-arm-none-eabi libnewlib-arm-none-eabi ruby ruby-dev
+      - run: sudo apt-get update && sudo apt-get install -y ruby ruby-dev bzip2
+      - name: Install the ARM toolchain selected by official SPIKE-RT v0.2.0
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 'https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2' -o "$RUNNER_TEMP/arm-gcc.tar.bz2"
+          sha256sum "$RUNNER_TEMP/arm-gcc.tar.bz2"
+          mkdir -p "$RUNNER_TEMP/arm-gcc"
+          tar -xf "$RUNNER_TEMP/arm-gcc.tar.bz2" -C "$RUNNER_TEMP/arm-gcc" --strip-components=1
+          echo "$RUNNER_TEMP/arm-gcc/bin" >> "$GITHUB_PATH"
       - run: sudo gem install shell --no-document
       - run: node editor/export-samples.mjs sdk/user_apps
       - name: Build official kernel and sample applications
