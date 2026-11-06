@@ -1,5 +1,7 @@
 export const RUNTIME_DECLARATIONS=`
 extern double sbl_vars[32];
+extern bool sbl_end_requested;
+void sbl_end_program(void);
 double sbl_number(double v);
 double sbl_operation(int op,double a,double b);
 double sbl_math(int fn,double v);
@@ -25,6 +27,8 @@ export const ADVANCED_RUNTIME=`
 #include <spike/pup/colorsensor.h>
 #include <spike/pup/forcesensor.h>
 double sbl_vars[32];
+bool sbl_end_requested=false;
+void sbl_end_program(void) {sbl_end_requested=true;failed=true;stop_all();}
 static pup_motor_t *sbl_motors[5];
 static pup_device_t *sbl_sensors[5];
 static SYSTIM sbl_timer_start;

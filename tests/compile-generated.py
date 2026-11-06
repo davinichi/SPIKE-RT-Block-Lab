@@ -47,6 +47,7 @@ header+='\nint get_tim(SYSTIM *now); int32_t pup_motor_get_count(pup_motor_t*); 
 (headers/'fake.h').write_text(header)
 for name in ['kernel.h','kernel_cfg.h','t_syslog.h','spike/hub/button.h','spike/hub/display.h','spike/pup/motor.h','spike/pup/ultrasonicsensor.h','spike/pup/colorsensor.h','spike/pup/forcesensor.h','spike/hub/light.h','spike/hub/speaker.h','spike/hub/battery.h']:
     p=headers/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_text('#include "fake.h"\n')
+(headers/'spike/hub/speaker.h').write_text('#pragma once\nvoid hub_speaker_set_volume(uint8_t); void hub_speaker_play_tone(uint16_t,int32_t); void hub_speaker_stop(void);\n')
 stub='''#include "fake.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -110,13 +111,13 @@ int main(void){
 compiler=os.environ.get('HOST_CC',r'C:\cygwin64\bin\gcc.exe')
 os.environ['PATH']=(str(Path(compiler).parent)+os.pathsep if Path(compiler).is_absolute() else "")+os.environ.get('PATH','')
 results=[]
-for sample in ['display','motor','distance','myblock','extended','motor_angle','sensors','math_fault','lazy_logic']:
+for sample in ['display','motor','distance','myblock','extended','motor_angle','sensors','math_fault','lazy_logic','global_end']:
     src=root/'generated'/sample
     objects=[]
     for name in ['app.c','sbl_myblocks.c','sbl_rt_runtime.c']:
         obj=out/(sample+'-'+name+'.o');subprocess.run([compiler,'-std=c11','-Wall','-Wextra','-Werror','-I'+str(headers),'-I'+str(src),'-c',str(src/name),'-o',str(obj)],check=True);objects.append(str(obj))
-    exe=out/(sample+'.exe');subprocess.run([compiler,'-std=c11','-Wall','-Wextra','-Werror','-I'+str(headers),str(out/'fake.c'),*(['-DADVANCED_TEST'] if sample in ['extended','motor_angle','sensors','math_fault','lazy_logic'] else []),*objects,'-lm','-o',str(exe)],check=True)
-    env={**os.environ,**({'EXPECT_MOTOR':'1'} if sample in ['motor','motor_angle','lazy_logic'] else {'EXPECT_NO_MOTOR':'1'} if sample=='math_fault' else {'EXPECT_TOTAL':'1'} if sample=='extended' else {})}
+    exe=out/(sample+'.exe');subprocess.run([compiler,'-std=c11','-Wall','-Wextra','-Werror','-I'+str(headers),str(out/'fake.c'),*(['-DADVANCED_TEST'] if sample in ['extended','motor_angle','sensors','math_fault','lazy_logic','global_end'] else []),*objects,'-lm','-o',str(exe)],check=True)
+    env={**os.environ,**({'EXPECT_MOTOR':'1'} if sample in ['motor','motor_angle','lazy_logic'] else {'EXPECT_NO_MOTOR':'1'} if sample in ['math_fault','global_end'] else {'EXPECT_TOTAL':'1'} if sample=='extended' else {})}
     r=subprocess.run([str(exe)],capture_output=True,text=True,check=True,timeout=10,env=env)
     results.append({'sample':sample,'result':r.stdout.strip()})
     if sample in ['motor','motor_angle']:
