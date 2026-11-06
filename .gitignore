@@ -9,3 +9,7 @@ builds/
 *.exe
 *.dll
 generated/
+
+__pycache__/
+*.pyc
+release/

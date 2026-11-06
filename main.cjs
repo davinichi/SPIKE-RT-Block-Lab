@@ -6,7 +6,7 @@ app.setName('SBL-RT Windows');
 app.setPath('userData',path.join(__dirname,'user-data'));
 app.whenReady().then(async()=>{
  const module=await import('./server.mjs');({server,url}=await module.startServer());
- window=new BrowserWindow({show:!process.env.SBL_SMOKE,width:1440,height:960,minWidth:1050,minHeight:740,title:'SBL-RT Windows 0.1.1',webPreferences:{preload:path.join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true}});
+ window=new BrowserWindow({show:!process.env.SBL_SMOKE,width:1440,height:960,minWidth:1050,minHeight:740,title:'SBL-RT Windows 0.2.0',webPreferences:{preload:path.join(__dirname,'preload.cjs'),contextIsolation:true,nodeIntegration:false,sandbox:true}});
  const guard=e=>{if(e.sender!==window.webContents||e.senderFrame!==e.sender.mainFrame||new URL(e.senderFrame.url).origin!==url)throw Error('Invalid sender');};
  window.webContents.setWindowOpenHandler(({url:target})=>{if(target.startsWith(url+'/'))shell.openExternal(target);return {action:'deny'};});
  window.webContents.on('will-navigate',(e,target)=>{if(new URL(target).origin!==url)e.preventDefault();});

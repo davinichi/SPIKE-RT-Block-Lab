@@ -1,13 +1,23 @@
-# Validation status — 0.1.1
+# Validation status — SBL-RT 0.2.0
 
-- Node.js 24 tests: 8 passed (generator, rejection cases, recursion/expansion limits, single state ownership, local server traversal).
-- Generated C host integration: app.c, sbl_myblocks.c, sbl_rt_runtime.c compiled as separate objects with GCC 11 and -Wall -Wextra -Werror, then linked for display, motor, distance and My Block samples.
-- Fake-device execution: all four samples reached task exit. A motor interrupted during its wait reached brake/cleanup at the simulated stop time. This is a fake-device test, not a device driver or real-time guarantee.
-- Windows Electron screen: editor started and exited with code 0 from a normal temporary folder; default sample had 5 Blockly blocks and generated all 11 source/configuration files. Screenshot reviewed. Workspace-folder execution encountered Windows AppContainer ACL errors; no ACL or security settings were changed. Normal-folder execution used the Electron sandbox enabled and GPU acceleration disabled.
-- Full SPIKE-RT toolchain: successful GitHub Actions run 42134555980 built all four samples (display, motor, distance, myblock) against official SPIKE-RT v0.2.0, commit 62a2824e4b513aaf65fde4670ccbc5620e1733a6, with official ARM GCC 10.3-2021.10. The upstream SDK was not patched. Downloaded sample binaries matched SHA256SUMS.txt and passed the upload screen's size/vector checks. This is a build verification, not a hardware test.
-- Hardware: no Hub flashing, startup, stop latency, sensor calibration, power-cycle, unplugged execution or standard OS restoration performed for this version.
-- GitHub publication: https://davinichi.github.io/SPIKE-RT-Block-Lab/ deployed successfully. Top page, editor, firmware guide, DFU page, generator and Blockly asset returned HTTP 200 and matched the repository files. Windows ZIP creation and host integration tests also succeeded in Actions run 42134555980. Workflow definitions alone are not evidence of a successful build.
+## Completed locally
 
-Do not infer this app's hardware verification from older EBL-RT / SBL / toolkit testing records.
+- Node.js 24: 16 tests pass. Includes every visible palette block's translation and Blockly save/load round trip, numeric variable identity, procedure arguments/return values, lazy Boolean evaluation, invalid ports, unsupported instructions, recursion and old project loading.
+- Palette: 68 distinct visible block types plus the variable category's dynamic blocks. The implementation also recognizes selected standard Blockly equivalents used by serialized projects.
+- GCC 11 host integration: all three C translation units compiled separately with -Wall -Wextra -Werror and linked for nine samples: display, motor, distance, myblock, extended, motor_angle, sensors, math_fault and lazy_logic.
+- Twelve fake-device executions pass: the nine samples, stop during timed and angle motion, and a stalled-angle 180-second timeout. Checks include result=10 from variables/procedure/loop computation, Python-style signed modulo and rounding, and zero-division stopping before the next motor command.
+- Windows Electron: 0.2.0 starts, draws the expanded categories, generates all eleven source/configuration files and exits with code 0 from a normal temporary directory. Screenshot visually reviewed. GPU acceleration is disabled; the Electron sandbox remains enabled. No Windows ACL/security settings changed.
 
-0.1.1 adds a regression test rejecting reserved F for motors, sensors and My Blocks, while accepting E. The SDK stays unmodified. 0.1.0 accidentally exposed F; use the corrected version.
+## Official target build and distribution
+
+The workflow compiles seven hardware samples with official SPIKE-RT v0.2.0 (62a2824e4b513aaf65fde4670ccbc5620e1733a6) and the official ARM GCC 10.3-2021.10 toolchain, without patching the SDK. Check the completed v0.2.0 workflow run for the actual target-build result and downloadable artifacts:
+
+https://github.com/davinichi/SPIKE-RT-Block-Lab/actions
+
+Previous release 0.1.1 passed the official build. That is not proof that new 0.2.0 code passes; only its own workflow result is evidence. Release workflows also create the unsigned Windows ZIP and sample firmware ZIP. Workflow definitions alone are not proof of success.
+
+## Not performed
+
+No Hub flashing, physical startup, stop latency, sensor calibration, encoder accuracy, power-cycle, unplugged operation, Windows DFU driver installation or standard OS restoration has been tested for 0.2.0. The host device layer is a simulation. target.json keeps hardwareTested:false.
+
+The linked SBL preview returned HTTP 403 in the research environment. Comparison used the existing local SBL 0.7.0 source, not an observed live preview screen. See web/comparison.html for feature differences and unsupported blocks.

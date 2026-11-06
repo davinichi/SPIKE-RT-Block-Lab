@@ -1,52 +1,38 @@
-# SBL-RT Windows 0.1.1
+# SBL-RT Windows 0.2.0
 
-SPIKE Prime Large Hub向け、ブロックでCプログラムを作るWindows x64試作版。
-EBL-RTの作品操作・編集・生成・転送パネルを参考にした独立アプリです。
+SPIKE Prime Large Hub向けのブロック編集・C生成Windows試作版。既存SBL 0.7.0と比較し、初版の9種類からパレット68種類へ拡充しました（変数カテゴリの動的ブロックは別計数）。実機未検証です。
 
-## 起動
+## 起動・公開先
 
-ReleasesのSBL-RT-Windows-0.1.1.zipをすべて展開し、SBL-RT.exeを起動します。
-編集とC生成はオフラインで動作します。完全なSPIKE-RTコンパイラ環境は同梱しません。
-ローカルDockerビルドには利用者が準備した公式SDK v0.2.0（サブモジュール含む）、Git、Docker、公式richイメージが必要です。
-アプリはSDKをコピーしてビルドし、元のSDKを変更しません。
+https://davinichi.github.io/SPIKE-RT-Block-Lab/
 
-## 対応範囲
+ReleasesからWindows ZIPをすべて通常の書き込み可能なフォルダーへ展開してSBL-RT.exeを起動します。インストール・管理者権限は不要。未署名です。編集とC生成はオフラインで動きます。完全なSDK・コンパイラは同梱しません。
 
-- 単一スタート、画像4種類、待機、時間指定モーター（90/180/360度毎秒、正逆転、A〜E）
-- 回数ループ、無限ループ、距離センサーの条件分岐
-- 引数なしマイブロック定義と呼び出し（再帰不可）
-- .sblrt作品の保存・読込・ローカル自動保存
-- app.c / sbl_myblocks.c / sbl_rt_runtime.c とヘッダー・cfg・cdl・Makefile.incの出力
-- 用意済みDocker環境でのビルド呼び出し
-- Chrome / EdgeのWebUSB DFU書込・USBシリアルログ画面
+## 追加した範囲
 
-未対応：変数・演算、引数・戻り値、イベント・複数スタート・周期タスク、角度指定・同期移動、色・フォース・姿勢・音・PID・CSV。
-EBL、EBL-RT、SBLの既存作品の直接読込と4環境互換は未実装です。
-将来の共通モデルへのアダプターを設けられるよう、Blocklyから版付きのDOM非依存プログラムデータへ変換して生成します。
+- モーター1個・2個の連続、度・回転・秒指定、パワー、ブレーキ・惰性・保持
+- 距離・有効判定、反射光・周囲光、フォース、左右ボタン、タイマー、電圧、エンコーダ
+- 数値変数、算術・比較・論理、数学関数、丸め・剰余・範囲制限
+- if/else-if/else、回数、while/until、条件待ち、終了
+- 画像・数値・画素・定数文字、ランプ、音
+- 数値引数２個と戻り値１個のマイブロック
 
-## 実機テスト
+常にA〜Eのみ。Fは公式SPIKE-RT v0.2.0のデバッグUART用です。SDKの非公式開放パッチは適用しません。２個のモーターは独立制御で同期補正なし。速さ100%は1050度/秒の指令値でPWMパワーと区別します。
 
-本版のHubへの書込、起動、停止、標準OSへの復帰は実機未検証です。
-既存Toolkitの過去の実機成功記録を本版の検証結果として扱いません。
-DFU転送完了は全バイト読み戻し照合ではありません。
-中央ボタンで開始・停止します。最初は機器を外した表示のみサンプルから試します。
-[導入・復帰ガイド](web/guide.html)を先に参照してください。
+保存・読込、未知ブロック・不正ポートの拒否、版付きIRからの生成、中央ボタン停止・異常停止、３ファイルの分割コンパイルまで対応します。旧.sblrtは読み込めます。
 
-## 開発
+未対応：複数スタートとイベント、車体の距離移動・旋回・同期補正、加減速、色番号・姿勢角、PID、CSV、文字変数・リスト、可変数引数・複数戻り値、既存SBL/EBL作品の直接読込と４環境共通形式。詳細は [比較・対応表](web/comparison.html)。画面に未実装ブロックを対応済みとして並べていません。
 
-Node.js 24で `npm test`。ブラウザー版は `node server.mjs` を実行し表示されたlocalhostをChrome / Edgeで開きます。
-Electron 45.2.1で `electron .`。Electronは別途準備してください。
-GitHub Actionsはサンプルの実コンパイルとPages公開を行います。Artifactsのsample-firmwareは自分で編集中の作品とは別です。
+## ビルドと検証
 
-## 検証の区別
+Node.js 24で `npm install --ignore-scripts` → `npm test`。`node server.mjs` でブラウザー版を起動。Electron45.2.1を別途用意すれば `electron .` でデスクトップ起動。
 
-TEST_RESULTS.mdにローカル自動試験・Windows起動試験・公式ツールチェーン試験・実機試験の実施有無を記録します。
-生成物のtarget.jsonはhardwareTested:falseです。
+ローカルビルドには利用者が準備したGit、Docker、依存を取得済みの公式SPIKE-RT v0.2.0、公式richイメージが必要です。SDKをコピーした領域でビルドし、元SDKは変更しません。
 
-LEGO公式アプリではありません。出典とライセンスはTHIRD_PARTY.md。
+GitHub Actionsは、公式SDKを変更せず、公式指定のARM GCC10.3-2021.10でサンプルをビルドします。生成Cは app.c / sbl_myblocks.c / sbl_rt_runtime.c の３つです。
 
-## 0.1.1 ポートFの訂正
+TEST_RESULTS.mdとActionsの完了状態を確認してください。ビルド成功は実機動作の証拠ではありません。Hub書込・起動・停止時間・抜線・再起動・標準OS復帰は未検証です。最初は機器を外してdisplay.binから始めてください。
 
-公式SPIKE-RT v0.2.0ではFはデバッグUART用に予約されています。0.1.0でFを提示した点を訂正し、選択・生成・作品読込の段階で拒否します。SDKの非公式F開放パッチは適用していません。
-参考: https://qiita.com/koushiro/items/480559806f5572902c5c
-一次根拠: https://github.com/spike-rt/pybricks-micropython/blob/abb77e921453c15bf8155feedc637e364f20f55c/lib/pbio/platform/prime_hub_spike-rt/pbdrvconfig.h
+[導入・DFU・標準環境への復帰](web/guide.html) ／ [ソースの出典・ライセンス](THIRD_PARTY.md)
+
+LEGO公式アプリではありません。Fの制約を確認する際の参考資料: https://qiita.com/koushiro/items/480559806f5572902c5c
