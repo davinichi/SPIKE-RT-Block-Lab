@@ -1,3 +1,7 @@
+import {setupClassroom,STANDARD_TYPES} from './sbl-reference/classroom-blocks.js';
+import {commonToolbox} from './sbl-reference/common-blocks.js?v=0.7.0';
+import {setBlockLanguage} from './sbl-reference/blocks.js';
+import {supportIssues,IMPLEMENTED_TYPES} from './sbl-support.js';
 // SBL-compatible block identifiers, restricted to implemented SPIKE-RT semantics.
 import {PORTS} from './model.js';
 const defs=[],stmt={previousStatement:null,nextStatement:null,inputsInline:true};
@@ -40,30 +44,30 @@ add('sbl_parameter','引数 %1',[choice('INDEX',[['1','0'],['2','1']])],{output:
 add('sbl_call_value','マイブロック %1 （%2 , %3）の戻り値',[field('NAME','動作'),val('ARG1'),val('ARG2')],{output:'Number',colour:'#aa597e',inputsInline:true});
 add('lab_return_value','値 %1 を返してマイブロック終了',[val('VALUE')],{previousStatement:null,colour:'#f5a400'});
 export const RICH_TYPES=new Set([...defs.map(d=>d.type),'math_number','math_arithmetic','math_single','math_trig','math_round','math_modulo','math_constrain','math_constant','logic_compare','logic_operation','logic_negate','logic_boolean','controls_if','controls_repeat_ext','controls_whileUntil','variables_get','variables_set','math_change','text']);
-export function validateWorkspaceState(state){let total=0;const allowed=new Set([...RICH_TYPES,'spike_start','spike_image','spike_wait','spike_motor','spike_repeat','spike_forever','spike_if_distance','spike_call','sbl_proc']);function visit(x,d=0){if(d>100)throw Error('作品の入れ子が深すぎます。');if(!x||typeof x!=='object')return;if(x.type&&(!allowed.has(x.type)||++total>4000))throw Error('未対応ブロックまたは上限超過です。');if(x.fields?.CONSTANT==='INFINITY')throw Error('無限大定数には対応していません。');for(const k of ['PORT','PORTS','LEFT','RIGHT'])if(x.fields?.[k]!==undefined){const s=x.fields[k];if(k==='PORTS'&&s==='ALL')continue;const a=typeof s==='string'?s.split(','):[];if(!a.length||a.length>(k==='PORTS'?2:1)||new Set(a).size!==a.length||a.some(p=>!PORTS.includes(p)))throw Error('ポートFはデバッグ用です。A〜Eのみ対応します。元の作品は変更していません。');}Object.values(x).forEach(v=>visit(v,d+1));}visit(state);return state;}
+export function validateWorkspaceState(state){
+ let total=0;const allowed=new Set([...RICH_TYPES,...STANDARD_TYPES,'spike_start','spike_image','spike_wait','spike_motor','spike_repeat','spike_forever','spike_if_distance','spike_call','sbl_proc']);
+ function visit(x,d=0){if(d>100)throw Error('作品の入れ子が深すぎます。');if(!x||typeof x!=='object')return;
+ if(x.type&&(!allowed.has(x.type)||++total>4000))throw Error('未知のブロックまたは上限超過です。元の作品は変更していません。');
+ for(const k of ['PORT','PORTS','LEFT','RIGHT'])if(x.fields?.[k]!==undefined){const s=x.fields[k];if(s==='ALL'&&k==='PORTS'&&['lab_motor_group_stop','lab_motor_stop_mode'].includes(x.type))continue;const a=typeof s==='string'?s.split(','):[];if(!a.length||a.length>(k==='PORTS'?2:1)||new Set(a).size!==a.length||a.some(p=>!'ABCDEF'.includes(p)||p.length!==1))throw Error('ポート指定が不正です。元の作品は変更していません。');}
+ Object.values(x).forEach(v=>visit(v,d+1));}visit(state);return state;
+}
 const n=value=>({shadow:{type:'math_number',fields:{NUM:value}}});
 const block=(type,inputs={})=>({kind:'block',type,inputs:Object.fromEntries(Object.entries(inputs).map(([k,v])=>[k,typeof v==='number'?n(v):{shadow:{type:'logic_boolean',fields:{BOOL:'FALSE'}}}]))});
-export function setupRich(Blockly){Blockly.defineBlocksWithJsonArray(defs);Blockly.defineBlocksWithJsonArray([
+export function setupRich(Blockly){Blockly.defineBlocksWithJsonArray(defs.filter(d=>!STANDARD_TYPES.includes(d.type)));Blockly.defineBlocksWithJsonArray([
  {type:'sbl_proc',message0:'マイブロック %1（引数1・引数2）',args0:[field('NAME','動作')],message1:'%1',args1:[{type:'input_statement',name:'BODY'}],colour:'#aa597e'},
  {type:'spike_call',message0:'マイブロック %1 を実行（%2 , %3）',args0:[field('NAME','動作'),val('ARG1'),val('ARG2')],previousStatement:null,nextStatement:null,inputsInline:true,colour:'#aa597e'}]);
- const init=Blockly.Blocks.math_constant.init;Blockly.Blocks.math_constant.init=function(){init.call(this);const f=this.getField('CONSTANT');f.setOptions(f.getOptions(false).filter(o=>o[1]!=='INFINITY'));};
- for(const [types,color]of [[['math_number','math_arithmetic','math_single','math_trig','math_round','math_modulo','math_constrain','math_constant','logic_compare','logic_operation','logic_negate','logic_boolean','text'],'#00b84a'],[['controls_if','controls_repeat_ext','controls_whileUntil'],'#f5a400'],[['variables_get','variables_set','math_change'],'#ff8c1a']])for(const type of types){const old=Blockly.Blocks[type].init;Blockly.Blocks[type].init=function(){old.call(this);this.setColour(color);};}
+ setupClassroom(Blockly);setBlockLanguage(Blockly,'standard');
+ for(const type of STANDARD_TYPES)if(!IMPLEMENTED_TYPES.has(type)&&Blockly.Blocks[type]){const init=Blockly.Blocks[type].init;Blockly.Blocks[type].init=function(){init.call(this);this.setWarningText('SPIKE-RT未対応：編集・保存・読込はできますが、C生成はできません。','spike-rt-capability');};}
 }
-export function richToolbox(){return {kind:'categoryToolbox',contents:[
- {kind:'category',name:'スタート',colour:'#d3a238',contents:[block('spike_start')]},
- {kind:'category',name:'モーター',colour:'#0090f5',contents:[...['single','pair'].flatMap(p=>['run','angle','rotation','time'].map(a=>block('lab_motor_'+p+'_'+a,{SPEED:20,...({angle:{DEGREES:90},rotation:{ROTATIONS:1},time:{SECONDS:1}}[a]??{})}))),block('lab_motor_group_stop'),block('lab_motor_power',{POWER:20}),block('spike_motor')]},
- {kind:'category',name:'センサー',colour:'#34ccf1',contents:['distance','distance_valid','reflection','ambient','force','pressed','encoder','motor_velocity','encoder_reset','button','timer','timer_reset','battery_voltage'].map(s=>block('lab_'+s))},
- {kind:'category',name:'制御',colour:'#f5a400',contents:[block('lab_wait',{SECONDS:1}),block('lab_wait_until',{BOOL:false}),block('controls_if'),block('controls_repeat_ext',{TIMES:3}),block('controls_whileUntil',{BOOL:false}),block('lab_forever'),block('lab_end'),block('spike_if_distance')]},
- {kind:'category',name:'演算',colour:'#00b84a',contents:[block('math_number'),...['add','sub','mul','div','lt','eq','gt','lte','gte','neq','and','or'].map(op=>block('lab_op_'+op,{A:['and','or'].includes(op)?false:1,B:['and','or'].includes(op)?false:2})),block('logic_negate',{BOOL:false}),block('logic_boolean'),block('lab_math_function',{VALUE:1}),block('lab_minmax',{A:1,B:2}),block('math_round',{NUM:1.5}),block('math_modulo',{DIVIDEND:5,DIVISOR:2}),block('math_constrain',{VALUE:5,LOW:0,HIGH:10}),block('math_constant')]},
- {kind:'category',name:'表示・ランプ',colour:'#9966ff',contents:[block('spike_image'),block('lab_display_clear'),block('lab_display_number',{VALUE:12}),block('lab_pixel',{X:2,Y:2,BRIGHTNESS:100}),{kind:'block',type:'lab_text',inputs:{TEXT:{shadow:{type:'text',fields:{TEXT:'HELLO'}}}}},block('lab_light'),block('lab_light_off')]},
- {kind:'category',name:'音',colour:'#a570b3',contents:[block('lab_tone_ms',{FREQUENCY:440,MS:500,VOLUME:30}),block('lab_sound_stop')]},
- {kind:'category',name:'変数',colour:'#ff8c1a',custom:'VARIABLE'},
- {kind:'category',name:'マイブロック',colour:'#aa597e',contents:[block('sbl_proc'),block('spike_call',{ARG1:0,ARG2:0}),block('sbl_call_value',{ARG1:0,ARG2:0}),block('sbl_parameter'),block('lab_return_value',{VALUE:0})]}
-]};}
+export function richToolbox(){return commonToolbox();}
 export function workspaceProgramV2(ws){
+ const issues=supportIssues(ws);if(issues.length)throw Error(issues.map(x=>x.message).join(' / '));
+ let currentDefinition=null;
+ const args=b=>(b.arguments_??[]).map((_,i)=>expr(b.getInputTargetBlock('ARG'+i)));
+ const parameter=b=>{const id=b.type==='lab_argument'?b.parameterId:b.getField('VAR')?.getVariable()?.getId();return currentDefinition?.getVarModels?.().findIndex(m=>m.getId()===id)??-1;};
  let total=0;const tick=(b,d)=>{if(!b||d>24||++total>4000)throw Error('式やブロックが多すぎるか、入れ子が深すぎます。');};
  const expr=(b,d=0)=>{if(!b)return 0;tick(b,d);const f=n=>b.getFieldValue(n),v=n=>expr(b.getInputTargetBlock(n),d+1);const t=b.type;
-  if(t==='math_number')return Number(f('NUM'));if(t==='logic_boolean')return f('BOOL')==='TRUE'?1:0;if(t==='variables_get')return {kind:'var',name:b.getField('VAR').getVariable().name};if(t==='sbl_parameter')return {kind:'param',index:Number(f('INDEX'))};
+  if(t==='math_number')return Number(f('NUM'));if(t==='logic_boolean')return f('BOOL')==='TRUE'?1:0;if(t==='lab_argument'){const i=parameter(b);if(i<0)throw Error('引数は対応する定義の中で使ってください。');return {kind:'param',index:i};}if(t==='variables_get'){const i=parameter(b);return i>=0?{kind:'param',index:i}:{kind:'var',name:b.getField('VAR').getVariable().name};}if(t==='sbl_parameter')return {kind:'param',index:Number(f('INDEX'))};
   if(t.startsWith('lab_op_'))return {kind:'op',op:t.slice(7),a:v('A'),b:v('B')};
   if(t==='math_arithmetic')return {kind:'op',op:{ADD:'add',MINUS:'sub',MULTIPLY:'mul',DIVIDE:'div',POWER:'pow'}[f('OP')],a:v('A'),b:v('B')};
   if(t==='logic_compare')return {kind:'op',op:{EQ:'eq',NEQ:'neq',LT:'lt',LTE:'lte',GT:'gt',GTE:'gte'}[f('OP')],a:v('A'),b:v('B')};
@@ -74,6 +78,8 @@ export function workspaceProgramV2(ws){
   if(t==='math_round')return {kind:'math',fn:{ROUND:'round',ROUNDUP:'ceil',ROUNDDOWN:'floor'}[f('OP')],value:v('NUM')};
   if(t==='lab_minmax')return {kind:'op',op:f('OP'),a:v('A'),b:v('B')};if(t==='math_modulo')return {kind:'op',op:'mod',a:v('DIVIDEND'),b:v('DIVISOR')};if(t==='math_constrain')return {kind:'clamp',value:v('VALUE'),low:v('LOW'),high:v('HIGH')};
   if(t==='math_constant'){const x={PI:Math.PI,E:Math.E,GOLDEN_RATIO:(1+Math.sqrt(5))/2,SQRT2:Math.SQRT2,SQRT1_2:Math.SQRT1_2}[f('CONSTANT')];if(x===undefined)throw Error('無限大定数は対応していません。');return x;}
+  if(t==='procedures_callreturn')return {kind:'call',name:b.getProcedureCall(),args:args(b)};
+  if(/^lab_(distance|reflection|force)_compare$/.test(t))return {kind:'op',op:{EQ:'eq',NEQ:'neq',LT:'lt',LTE:'lte',GT:'gt',GTE:'gte'}[f('OP')],a:{kind:'sensor',sensor:t.split('_')[1],port:f('PORT')},b:v('VALUE')};
   if(t==='sbl_call_value')return {kind:'call',name:f('NAME'),args:[v('ARG1'),v('ARG2')]};
   if(['distance','distance_valid','reflection','ambient','force','pressed','encoder','motor_velocity','button','timer','battery_voltage'].some(s=>t==='lab_'+s))return {kind:'sensor',sensor:t.slice(4),port:f('PORT'),button:f('BUTTON')};
   throw Error('未対応の式です: '+t);
@@ -89,14 +95,18 @@ export function workspaceProgramV2(ws){
   else if(['spike_forever','lab_forever'].includes(t))Object.assign(n,{type:'forever',body:body(t==='spike_forever'?'BODY':'DO')});else if(t==='controls_whileUntil')Object.assign(n,{type:'while',until:f('MODE')==='UNTIL',condition:v('BOOL'),body:body('DO')});else if(t==='lab_wait_until')Object.assign(n,{type:'waitUntil',condition:v('BOOL')});
   else if(t==='spike_if_distance')Object.assign(n,{type:'ifDistance',port:f('PORT'),cm:Number(f('CM')),then:body('THEN'),else:body('ELSE')});
   else if(t==='controls_if'){let tail=body('ELSE');let i=0;while(b.getInput('IF'+i))i++;for(--i;i>=0;i--)tail=[{type:'if',condition:v('IF'+i),then:body('DO'+i),else:tail}];nodes.push(...tail);b=b.getNextBlock();continue;}
+  else if(t==='procedures_callnoreturn')Object.assign(n,{type:'call',name:b.getProcedureCall(),args:args(b)});
+  else if(t==='lab_call_outputs')Object.assign(n,{type:'set',name:b.getField('OUT0').getVariable().name,value:{kind:'call',name:b.getProcedureCall(),args:args(b)}});
+  else if(t==='lab_return')Object.assign(n,{type:'return',value:0});
+  else if(t==='lab_return_values')Object.assign(n,{type:'return',value:v('VALUE0')});
   else if(t==='spike_call')Object.assign(n,{type:'call',name:f('NAME'),args:[v('ARG1'),v('ARG2')]});else if(t==='lab_return_value')Object.assign(n,{type:'return',value:v('VALUE')});else if(t==='lab_end')n.type='end';
   else if(t==='lab_timer_reset')n.type='timerReset';else if(t==='lab_display_clear')n.type='displayClear';else if(t==='lab_display_number')Object.assign(n,{type:'displayNumber',value:v('VALUE')});else if(t==='lab_pixel')Object.assign(n,{type:'pixel',x:v('X'),y:v('Y'),value:v('BRIGHTNESS')});
   else if(t==='lab_text'){const text=b.getInputTargetBlock('TEXT');if(text?.type!=='text')throw Error('文字表示は今回は定数文字列のみ対応します。');Object.assign(n,{type:'displayText',text:text.getFieldValue('TEXT')});}
   else if(t==='lab_light')Object.assign(n,{type:'light',color:f('COLOR')});else if(t==='lab_light_off')n.type='lightOff';else if(t==='lab_tone_ms')Object.assign(n,{type:'tone',hz:v('FREQUENCY'),ms:v('MS'),volume:v('VOLUME')});else if(t==='lab_sound_stop')n.type='soundStop';else throw Error('未対応ブロックです: '+t);
   nodes.push(n);if(['forever','end','return'].includes(n.type)&&b.getNextBlock())throw Error('終了・戻る・ずっとの後のブロックには進めません。');b=b.getNextBlock();}return nodes;
  }
- for(const b of roots)if(!['spike_start','sbl_proc'].includes(b.type))throw Error('接続されていないブロックがあります。スタートかマイブロックへつないでください。');
- return {version:2,body:chain(roots.find(b=>b.type==='spike_start').getNextBlock()),procedures:roots.filter(b=>b.type==='sbl_proc').map(b=>({name:b.getFieldValue('NAME'),params:2,body:chain(b.getInputTargetBlock('BODY'))}))};
+ for(const b of roots)if(!['spike_start','sbl_proc','procedures_defnoreturn','procedures_defreturn'].includes(b.type))throw Error('接続されていないブロックがあります。スタートかマイブロックへつないでください。');
+ return {version:2,body:chain(roots.find(b=>b.type==='spike_start').getNextBlock()),procedures:roots.filter(b=>['sbl_proc','procedures_defnoreturn','procedures_defreturn'].includes(b.type)).map(b=>{currentDefinition=b;const body=chain(b.getInputTargetBlock(b.type==='sbl_proc'?'BODY':'STACK'));if(b.type==='procedures_defreturn')body.push({type:'return',value:expr(b.getInputTargetBlock('RETURN'))});currentDefinition=null;return {name:b.getFieldValue('NAME'),params:b.type==='sbl_proc'?2:b.getVarModels().length,body};})};
 }
 export function richSample(name){
  const num=n=>({shadow:{type:'math_number',fields:{NUM:n}}}),block=b=>({block:b});

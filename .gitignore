@@ -13,3 +13,5 @@ generated/
 __pycache__/
 *.pyc
 release/
+
+ui-smoke/

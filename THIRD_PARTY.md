@@ -7,3 +7,5 @@
 - Basic Blockly definitions, model, ZIP writer and legacy generator reused from the user's existing SPIKE Block Lab 0.7.0 sources. Their original attribution is retained. These project-owned sources had no general public reuse license in the inspected checkout; this release does not assign a new license to them.
 
 SPIKE-RT, its kernel and device drivers are not bundled with the editor executable. Compiled sample firmware is accompanied by the upstream LICENSE / ReadMe_OSS.txt and source reference in firmware/NOTICE.txt. See upstream for all submodule license terms.
+
+- SBL block UI source: seven unchanged files from the user-owned SPIKE Block Lab published saved version 23, commit 9c81c6fab69737319230440b38a215ba2ee7a3aa. See web/sbl-reference/provenance.json. Blockly built-in definitions remain covered by the Blockly license.

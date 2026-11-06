@@ -3,18 +3,35 @@ import assert from 'node:assert/strict';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {generateProject} from '../web/generator.js';
 import {validateWorkspaceState,setupRich,richToolbox,workspaceProgramV2,richSample} from '../web/rich-blocks.js';
+import {IMPLEMENTED_TYPES,supportIssues} from '../web/sbl-support.js';
 import {setupBlocks} from '../web/blocks.js';
 const Blockly=await import(process.env.SBL_BLOCKLY_MODULE??'blockly');
-setupBlocks(Blockly);setupRich(Blockly);
+setupRich(Blockly);
 const cdl=await readFile(new URL('../web/rt-template.cdl',import.meta.url),'utf8');
 const g=(body,procedures=[])=>generateProject({version:2,body,procedures},cdl);
 const chain=block=>({blocks:{languageVersion:0,blocks:[{type:'spike_start',next:{block}}]}});
-test('all visible palette types have working translation and survive Blockly save/load',()=>{const palette=richToolbox().contents.flatMap(c=>c.contents??[]);let count=0;for(const entry of palette){if(entry.kind!=='block'||['spike_start','sbl_proc','sbl_parameter','spike_call','sbl_call_value','lab_return_value','lab_text','variables_get','variables_set','math_change'].includes(entry.type))continue;const ws=new Blockly.Workspace();try{const connection=ws.newBlock(entry.type).outputConnection;const expression=!!connection,boolean=connection?.getCheck()?.includes('Boolean');ws.clear();const b=expression?(boolean?{type:'controls_if',inputs:{IF0:{block:entry}}}:{type:'lab_display_number',inputs:{VALUE:{block:entry}}}):entry;Blockly.serialization.workspaces.load(chain(b),ws);const p=workspaceProgramV2(ws);const state=Blockly.serialization.workspaces.save(ws);validateWorkspaceState(state);g(p.body,p.procedures);const other=new Blockly.Workspace();try{Blockly.serialization.workspaces.load(state,other);assert.deepEqual(workspaceProgramV2(other),p);}finally{other.dispose();}count++;}finally{ws.dispose();}}assert.ok(count>=40,'palette coverage='+count);});
+test('all supported palette entries translate and all unsupported entries round trip without silent execution',()=>{
+ const palette=richToolbox().contents.flatMap(c=>c.contents??[]);let compiled=0,preserved=0;
+ for(const entry of palette){if(entry.kind!=='block'||entry.type==='spike_start')continue;const ws=new Blockly.Workspace(),other=new Blockly.Workspace();
+ try{Blockly.serialization.workspaces.load({blocks:{languageVersion:0,blocks:[entry]}},ws);const first=ws.getTopBlocks(false)[0];
+ const saved=Blockly.serialization.workspaces.save(ws);validateWorkspaceState(saved);Blockly.serialization.workspaces.load(saved,other);assert.deepEqual(Blockly.serialization.workspaces.save(other),saved);
+ if(!IMPLEMENTED_TYPES.has(entry.type)){assert.ok(supportIssues(ws).length);assert.throws(()=>workspaceProgramV2(ws),/未対応/);preserved++;continue;}
+ const expression=!!first.outputConnection,boolean=first.outputConnection?.getCheck()?.includes('Boolean');ws.clear();
+ const b=expression?(boolean?{type:'controls_if',inputs:{IF0:{block:entry}}}:{type:'lab_display_number',inputs:{VALUE:{block:entry}}}):entry;
+ if(entry.type==='text'||entry.type==='lab_return')continue;
+ Blockly.serialization.workspaces.load(chain(b),ws);const program=workspaceProgramV2(ws);g(program.body,program.procedures);compiled++;
+ }finally{ws.dispose();other.dispose();}}
+ assert.ok(compiled>=40,'compiled='+compiled);assert.ok(preserved>=30,'preserved='+preserved);
+});
 test('variables, conditionals, loop re-evaluation and two-argument return calls compile',()=>{const p=g([{type:'set',name:'値',value:{kind:'call',name:'加算',args:[2,3]}},{type:'while',until:false,condition:{kind:'op',op:'lt',a:{kind:'var',name:'値'},b:10},body:[{type:'change',name:'値',value:1}]},{type:'displayNumber',value:{kind:'var',name:'値'}}],[{name:'加算',body:[{type:'return',value:{kind:'op',op:'add',a:{kind:'param',index:0},b:{kind:'param',index:1}}}]}]);assert.match(p['sbl_myblocks.c'],/sbl_proc_0\(2, 3/);assert.match(p['sbl_rt_runtime.h'],/extern double sbl_vars/);assert.match(p['sbl_myblocks.c'],/for \(;;\)/);assert.equal(JSON.parse(p['target.json']).irVersion,2);});
 test('AND and OR generate lazy branches before evaluating RHS',()=>{const f=g([{type:'if',condition:{kind:'op',op:'and',a:0,b:{kind:'op',op:'div',a:1,b:0}},then:[],else:[]}]);assert.match(f['sbl_myblocks.c'],/if \(\(0\)\) \{[\s\S]*sbl_operation\(3, 1, 0\)/);});
 test('end inside a My Block propagates global shutdown rather than returning only from the procedure',()=>{const f=g([{type:'call',name:'終了',args:[]}],[{name:'終了',body:[{type:'end'}]}]);assert.match(f['sbl_myblocks.c'],/sbl_end_program\(\);\n\s+return false/);assert.match(f['app.c'],/success \|\| sbl_end_requested/);});
 test('invalid hardware, recursive reporter calls and unsafe text fail export',()=>{assert.throws(()=>g([{type:'set',name:'x',value:{kind:'sensor',sensor:'force',port:'F'}}]),/ポート/);assert.throws(()=>g([{type:'motorCommand',ports:'A,A',action:'angle',speed:20,amount:90}]),/異なる/);assert.throws(()=>g([{type:'displayText',text:'日本語'}]),/英数字/);assert.throws(()=>g([{type:'call',name:'再帰',args:[]}],[{name:'再帰',body:[{type:'return',value:{kind:'call',name:'再帰',args:[]}}]}]),/再帰/);assert.throws(()=>g([{type:'set',name:'x',value:{kind:'sensor',sensor:'reflection',port:'A'}},{type:'motorPower',port:'A',value:20}]),/異なる機器/);});
-test('import rejects unsupported blocks and every invalid port before Blockly can silently remap them',()=>{for(const PORT of ['F','G','A,F'])assert.throws(()=>validateWorkspaceState(chain({type:'spike_motor',fields:{PORT}})),/A〜E/);assert.throws(()=>validateWorkspaceState(chain({type:'lab_pid'})),/未対応/);});
+test('SBL unsupported blocks and F ports preserve data while invalid ports cannot be silently remapped',()=>{
+ for(const PORT of ['G','A,F'])assert.throws(()=>validateWorkspaceState(chain({type:'spike_motor',fields:{PORT}})),/ポート/);
+ const state=chain({type:'lab_display_number',inputs:{VALUE:{block:{type:'lab_pid',fields:{NAME:'保存対象'},inputs:{TARGET:{block:{type:'lab_distance',fields:{PORT:'F'}}}}}}}});
+ validateWorkspaceState(state);const ws=new Blockly.Workspace(),other=new Blockly.Workspace();try{Blockly.serialization.workspaces.load(state,ws);const saved=Blockly.serialization.workspaces.save(ws);Blockly.serialization.workspaces.load(saved,other);assert.deepEqual(Blockly.serialization.workspaces.save(other),saved);assert.equal(other.getAllBlocks(false).find(b=>b.type==='lab_distance').getFieldValue('PORT'),'F');assert.throws(()=>workspaceProgramV2(other),/未対応/);}finally{ws.dispose();other.dispose();}
+});
 test('old projects remain translatable and wrong top-level stacks are not silently omitted',()=>{const ws=new Blockly.Workspace();try{const old=chain({type:'spike_wait',fields:{SECONDS:1}});validateWorkspaceState(old);Blockly.serialization.workspaces.load(old,ws);assert.ok(g(workspaceProgramV2(ws).body)['app.c']);const b=ws.newBlock('lab_timer_reset');assert.throws(()=>workspaceProgramV2(ws),/接続されていない/);b.dispose();}finally{ws.dispose();}});
 test('new classroom samples load, translate, save and reload',()=>{for(const name of ['math','angle','sensor_number']){const ws=new Blockly.Workspace();try{const state=richSample(name);validateWorkspaceState(state);Blockly.serialization.workspaces.load(state,ws);const p=workspaceProgramV2(ws);g(p.body,p.procedures);const saved=Blockly.serialization.workspaces.save(ws);validateWorkspaceState(saved);Blockly.serialization.workspaces.load(saved,ws);assert.deepEqual(workspaceProgramV2(ws),p);}finally{ws.dispose();}}});
 test('numeric variable identities and procedure arguments survive real Blockly serialization',()=>{

@@ -1,0 +1,8872 @@
+{
+  "toolbox": {
+    "kind": "categoryToolbox",
+    "contents": [
+      {
+        "kind": "category",
+        "name": "スタート",
+        "colour": "#d3a238",
+        "contents": [
+          {
+            "kind": "block",
+            "type": "spike_start",
+            "fields": {},
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "イベント",
+        "colour": "#d3a238",
+        "contents": [
+          {
+            "kind": "label",
+            "text": "センサー・比較を条件の欄に入れます"
+          },
+          {
+            "kind": "block",
+            "type": "lab_when",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_when_changed",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "label",
+            "text": "同じ名前のメッセージで連携します"
+          },
+          {
+            "kind": "block",
+            "type": "lab_message_hat",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_broadcast",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_message_wait",
+            "fields": {},
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "モーター",
+        "colour": "#0090f5",
+        "contents": [
+          {
+            "kind": "label",
+            "text": "加速・減速（L・M共通）"
+          },
+          {
+            "kind": "block",
+            "type": "lab_ramp",
+            "inputs": {
+              "UP": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              },
+              "DOWN": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_sync",
+            "inputs": {}
+          },
+          {
+            "kind": "label",
+            "text": "モーター1個"
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_single_run",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_single_angle",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "DEGREES": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 90
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_single_rotation",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "ROTATIONS": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_single_time",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "SECONDS": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "label",
+            "text": "モーター2個"
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_pair_run",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_pair_angle",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "DEGREES": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 90
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_pair_rotation",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "ROTATIONS": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_pair_time",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "SECONDS": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "label",
+            "text": "L・M共通の速度・パワー・停止方法"
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_change_speed",
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_power",
+            "inputs": {
+              "POWER": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_stop_mode",
+            "inputs": {}
+          },
+          {
+            "kind": "label",
+            "text": "モーターを停止（L・M共通）"
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_group_stop",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "label",
+            "text": "モーターの計測"
+          },
+          {
+            "kind": "block",
+            "type": "lab_motor_velocity",
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "動き",
+        "colour": "#ff4ccd",
+        "contents": [
+          {
+            "kind": "block",
+            "type": "lab_pair",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_geometry",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_tread",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_steering_run",
+            "fields": {},
+            "inputs": {
+              "TURN": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 25
+                  }
+                }
+              },
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_steering_angle",
+            "fields": {},
+            "inputs": {
+              "TURN": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 25
+                  }
+                }
+              },
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "DEGREES": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 360
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_steering_time",
+            "fields": {},
+            "inputs": {
+              "TURN": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 25
+                  }
+                }
+              },
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "SECONDS": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 2
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_tank_angle",
+            "fields": {},
+            "inputs": {
+              "LEFT_SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 30
+                  }
+                }
+              },
+              "RIGHT_SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 15
+                  }
+                }
+              },
+              "DEGREES": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 360
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_tank_time",
+            "fields": {},
+            "inputs": {
+              "LEFT_SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 30
+                  }
+                }
+              },
+              "RIGHT_SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 15
+                  }
+                }
+              },
+              "SECONDS": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_tank_run",
+            "fields": {},
+            "inputs": {
+              "LEFT_SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "RIGHT_SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_spin_right",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "ANGLE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 90
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_spin_left",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "ANGLE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 90
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_pivot_right",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "ANGLE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 90
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_pivot_left",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "ANGLE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 90
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_drive_forward",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "CM": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_drive_backward",
+            "fields": {},
+            "inputs": {
+              "SPEED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              },
+              "CM": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 20
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "センサー",
+        "colour": "#34ccf1",
+        "contents": [
+          {
+            "kind": "label",
+            "text": "本体のバッテリー"
+          },
+          {
+            "kind": "block",
+            "type": "lab_battery_voltage",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "label",
+            "text": "タイマー"
+          },
+          {
+            "kind": "block",
+            "type": "lab_timer",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_timer_reset",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "label",
+            "text": "モーターのエンコーダ"
+          },
+          {
+            "kind": "block",
+            "type": "lab_encoder",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_encoder_reset",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "label",
+            "text": "本体のジャイロ・ボタン"
+          },
+          {
+            "kind": "block",
+            "type": "lab_angle",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_yaw_reset",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_button",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "label",
+            "text": "フォースセンサー"
+          },
+          {
+            "kind": "block",
+            "type": "lab_pressed",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_force",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_force_compare",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 2
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "label",
+            "text": "カラーセンサー"
+          },
+          {
+            "kind": "block",
+            "type": "lab_color_is",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_color",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_reflection_compare",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 50
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_reflection",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "label",
+            "text": "距離センサー"
+          },
+          {
+            "kind": "block",
+            "type": "lab_distance_compare",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 15
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_distance",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_distance_valid",
+            "fields": {},
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "音",
+        "colour": "#a570b3",
+        "contents": [
+          {
+            "kind": "block",
+            "type": "lab_tone_ms",
+            "fields": {},
+            "inputs": {
+              "FREQUENCY": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 440
+                  }
+                }
+              },
+              "MS": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 200
+                  }
+                }
+              },
+              "VOLUME": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 25
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "制御",
+        "colour": "#f5a400",
+        "contents": [
+          {
+            "kind": "block",
+            "type": "lab_wait",
+            "fields": {},
+            "inputs": {
+              "SECONDS": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "controls_if",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "controls_if",
+            "fields": {},
+            "inputs": {},
+            "extraState": {
+              "hasElse": true
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_forever",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "controls_repeat_ext",
+            "fields": {},
+            "inputs": {
+              "TIMES": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 10
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "controls_whileUntil",
+            "fields": {
+              "MODE": "UNTIL"
+            },
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "controls_whileUntil",
+            "fields": {
+              "MODE": "WHILE"
+            },
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_wait_until",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_end",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_return",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "label",
+            "text": "PID制御"
+          },
+          {
+            "kind": "block",
+            "type": "lab_pid",
+            "fields": {},
+            "inputs": {
+              "TARGET": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "MEASURED": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "KP": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              },
+              "KI": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "KD": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_pid_reset",
+            "fields": {},
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "演算",
+        "colour": "#00b84a",
+        "contents": [
+          {
+            "kind": "block",
+            "type": "math_number",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_op_add",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_op_sub",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_op_mul",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_op_div",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_op_lt",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 100
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_op_eq",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 100
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_op_gt",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 100
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_op_lte",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 100
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_op_gte",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 100
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_op_neq",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 100
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_op_and",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "logic_boolean",
+                  "fields": {
+                    "BOOL": "FALSE"
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "logic_boolean",
+                  "fields": {
+                    "BOOL": "FALSE"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_op_or",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "logic_boolean",
+                  "fields": {
+                    "BOOL": "FALSE"
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "logic_boolean",
+                  "fields": {
+                    "BOOL": "FALSE"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_math_function",
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_minmax",
+            "inputs": {
+              "A": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              },
+              "B": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 2
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "logic_negate",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "logic_boolean",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "math_modulo",
+            "fields": {},
+            "inputs": {
+              "DIVIDEND": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              },
+              "DIVISOR": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 10
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "math_random_int",
+            "fields": {},
+            "inputs": {
+              "FROM": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              },
+              "TO": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 10
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "math_round",
+            "fields": {},
+            "inputs": {
+              "NUM": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1.5
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "math_constrain",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 120
+                  }
+                }
+              },
+              "LOW": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": -100
+                  }
+                }
+              },
+              "HIGH": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 100
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "表示",
+        "colour": "#9966ff",
+        "contents": [
+          {
+            "kind": "label",
+            "text": "SPIKE本体：5×5ライト／英数字を表示"
+          },
+          {
+            "kind": "block",
+            "type": "lab_display_clear",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_text",
+            "fields": {},
+            "inputs": {
+              "TEXT": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": "Hello"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_display_number",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 12.5
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_display_abacus",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 7800
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_pixel",
+            "fields": {},
+            "inputs": {
+              "X": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 2
+                  }
+                }
+              },
+              "Y": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 2
+                  }
+                }
+              },
+              "BRIGHTNESS": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 100
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "ランプ",
+        "colour": "#9966ff",
+        "contents": [
+          {
+            "kind": "block",
+            "type": "lab_light",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_light_off",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_light_blink",
+            "inputs": {
+              "SECONDS": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_light_pulse",
+            "inputs": {
+              "SECONDS": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 2
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "データ",
+        "colour": "#ff8c1a",
+        "contents": [
+          {
+            "kind": "label",
+            "text": "文字列"
+          },
+          {
+            "kind": "block",
+            "type": "text",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_text_get",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_text_set",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": "Hello"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "text_join",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "text_length",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": "Hello"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "text_isEmpty",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": "Hello"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_string_char",
+            "inputs": {
+              "TEXT": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": "Hello"
+                  }
+                }
+              },
+              "INDEX": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_string_contains",
+            "inputs": {
+              "TEXT": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": "Hello"
+                  }
+                }
+              },
+              "FIND": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": "ell"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_string_equal",
+            "inputs": {
+              "TEXT": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": "Hello"
+                  }
+                }
+              },
+              "OTHER": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": "Hello"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_string_to_number",
+            "inputs": {
+              "TEXT": {
+                "shadow": {
+                  "type": "text",
+                  "fields": {
+                    "TEXT": "12.5"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_string_from_number",
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 12.5
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "label",
+            "text": "数値リスト（同じ名前で共有）"
+          },
+          {
+            "kind": "block",
+            "type": "lab_list_clear",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_list_add",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_list_set",
+            "fields": {},
+            "inputs": {
+              "INDEX": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              },
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_list_delete",
+            "fields": {},
+            "inputs": {
+              "INDEX": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_list_item",
+            "fields": {},
+            "inputs": {
+              "INDEX": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_list_length",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_list_contains",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_list_stat",
+            "fields": {},
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "記録",
+        "colour": "#c58245",
+        "contents": [
+          {
+            "kind": "label",
+            "text": "本体にCSVを保存・再接続して取り出す"
+          },
+          {
+            "kind": "block",
+            "type": "lab_log_start",
+            "fields": {},
+            "inputs": {}
+          },
+          {
+            "kind": "block",
+            "type": "lab_log_value",
+            "fields": {},
+            "inputs": {
+              "VALUE": {
+                "shadow": {
+                  "type": "math_number",
+                  "fields": {
+                    "NUM": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "kind": "block",
+            "type": "lab_log_end",
+            "fields": {},
+            "inputs": {}
+          }
+        ]
+      },
+      {
+        "kind": "category",
+        "name": "変数",
+        "colour": "#c58245",
+        "custom": "LAB_VARIABLES"
+      },
+      {
+        "kind": "category",
+        "name": "マイブロック",
+        "colour": "#aa597e",
+        "custom": "PROCEDURE"
+      },
+      {
+        "kind": "category",
+        "name": "引数",
+        "colour": "#668b6d",
+        "custom": "ARGUMENTS"
+      }
+    ]
+  },
+  "blocks": {
+    "controls_if": {
+      "colour": "#f5a400",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "IF0",
+          "type": 1,
+          "check": [
+            "Boolean"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "もし"
+            }
+          ]
+        },
+        {
+          "name": "LAB_THEN_0",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "なら"
+            }
+          ]
+        },
+        {
+          "name": "DO0",
+          "type": 3,
+          "check": null,
+          "fields": []
+        }
+      ]
+    },
+    "controls_repeat_ext": {
+      "colour": "#f5a400",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TIMES",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "回繰り返す"
+            }
+          ]
+        },
+        {
+          "name": "DO",
+          "type": 3,
+          "check": null,
+          "fields": []
+        },
+        {
+          "name": "LAB_LOOP_ICON",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "↻"
+            }
+          ]
+        }
+      ]
+    },
+    "controls_whileUntil": {
+      "colour": "#f5a400",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "BOOL",
+          "type": 1,
+          "check": [
+            "Boolean"
+          ],
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "MODE",
+              "text": "まで繰り返す",
+              "options": [
+                [
+                  "まで繰り返す",
+                  "UNTIL"
+                ],
+                [
+                  "の間繰り返す",
+                  "WHILE"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "DO",
+          "type": 3,
+          "check": null,
+          "fields": []
+        },
+        {
+          "name": "LAB_LOOP_ICON",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "↻"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_angle": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "本体の"
+            },
+            {
+              "name": "AXIS",
+              "text": "向き",
+              "options": [
+                [
+                  "向き",
+                  "0"
+                ],
+                [
+                  "前後の傾き",
+                  "1"
+                ],
+                [
+                  "左右の傾き",
+                  "2"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "角度（度）"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_argument": {
+      "colour": "#aa597e",
+      "previous": false,
+      "next": false,
+      "output": [],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "ARG_NAME",
+              "text": "引数"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_battery_voltage": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "本体のバッテリー電圧（mV）"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_broadcast": {
+      "colour": "#d3a238",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "メッセージ"
+            },
+            {
+              "name": "MESSAGE",
+              "text": "合図"
+            },
+            {
+              "name": null,
+              "text": "を送る"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_button": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "本体の"
+            },
+            {
+              "name": "BUTTON",
+              "text": "左",
+              "options": [
+                [
+                  "左",
+                  "LEFT"
+                ],
+                [
+                  "右",
+                  "RIGHT"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "ボタンが押されている"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_call_outputs": {
+      "colour": "#aa597e",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TOPROW",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "NAME",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+    "lab_color": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "カラーセンサ"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "の色番号"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_color_is": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "カラーセンサ"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "が"
+            },
+            {
+              "name": "COLOR",
+              "text": "赤",
+              "options": [
+                [
+                  "赤",
+                  "RED"
+                ],
+                [
+                  "黄",
+                  "YELLOW"
+                ],
+                [
+                  "緑",
+                  "GREEN"
+                ],
+                [
+                  "青",
+                  "BLUE"
+                ],
+                [
+                  "白",
+                  "WHITE"
+                ],
+                [
+                  "黒",
+                  "BLACK"
+                ],
+                [
+                  "紫",
+                  "MAGENTA"
+                ],
+                [
+                  "色なし",
+                  "UNKNOWN"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "lab_display_abacus": {
+      "colour": "#9966ff",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "数値"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "をそろばん形式で表示"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_display_clear": {
+      "colour": "#9966ff",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "本体の表示を消す"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_display_number": {
+      "colour": "#9966ff",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "本体に数値"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "を表示"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_distance": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "距離センサ"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "の距離（cm）"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_distance_compare": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "距離センサ"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "の距離が"
+            },
+            {
+              "name": "OP",
+              "text": "＜",
+              "options": [
+                [
+                  "＜",
+                  "LT"
+                ],
+                [
+                  "＝",
+                  "EQ"
+                ],
+                [
+                  "＞",
+                  "GT"
+                ],
+                [
+                  "≦",
+                  "LTE"
+                ],
+                [
+                  "≧",
+                  "GTE"
+                ],
+                [
+                  "≠",
+                  "NEQ"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "cm"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_distance_valid": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "距離センサ"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "が測れている"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_drive_backward": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "CM",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "cm 後ろに下がる"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_drive_forward": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "CM",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "cm 前に進む"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_encoder": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "の回転角度（度）"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_encoder_reset": {
+      "colour": "#34ccf1",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "の回転角度を0にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_end": {
+      "colour": "#f5a400",
+      "previous": true,
+      "next": false,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "すべて止めてプログラムを終了"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_force": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "フォースセンサ"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "の力（N）"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_force_compare": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "フォースセンサ"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "の力が"
+            },
+            {
+              "name": "OP",
+              "text": "＜",
+              "options": [
+                [
+                  "＜",
+                  "LT"
+                ],
+                [
+                  "＝",
+                  "EQ"
+                ],
+                [
+                  "＞",
+                  "GT"
+                ],
+                [
+                  "≦",
+                  "LTE"
+                ],
+                [
+                  "≧",
+                  "GTE"
+                ],
+                [
+                  "≠",
+                  "NEQ"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "N"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_forever": {
+      "colour": "#f5a400",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "ずっと"
+            }
+          ]
+        },
+        {
+          "name": "DO",
+          "type": 3,
+          "check": null,
+          "fields": []
+        },
+        {
+          "name": "LAB_LOOP_ICON",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "↻"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_geometry": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "タイヤの直径を"
+            },
+            {
+              "name": "DIAMETER",
+              "text": "56"
+            },
+            {
+              "name": null,
+              "text": "mm にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_light": {
+      "colour": "#9966ff",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "本体のランプを"
+            },
+            {
+              "name": "COLOR",
+              "text": "赤",
+              "options": [
+                [
+                  "赤",
+                  "RED"
+                ],
+                [
+                  "黄",
+                  "YELLOW"
+                ],
+                [
+                  "緑",
+                  "GREEN"
+                ],
+                [
+                  "青",
+                  "BLUE"
+                ],
+                [
+                  "白",
+                  "WHITE"
+                ],
+                [
+                  "黒",
+                  "BLACK"
+                ],
+                [
+                  "紫",
+                  "MAGENTA"
+                ],
+                [
+                  "色なし",
+                  "UNKNOWN"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_light_blink": {
+      "colour": "#9966ff",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SECONDS",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "本体のランプを"
+            },
+            {
+              "name": "COLOR",
+              "text": "赤",
+              "options": [
+                [
+                  "赤",
+                  "RED"
+                ],
+                [
+                  "黄",
+                  "YELLOW"
+                ],
+                [
+                  "緑",
+                  "GREEN"
+                ],
+                [
+                  "青",
+                  "BLUE"
+                ],
+                [
+                  "白",
+                  "WHITE"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "で点滅 周期"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "秒"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_light_off": {
+      "colour": "#9966ff",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "本体のランプを消す"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_light_pulse": {
+      "colour": "#9966ff",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SECONDS",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "本体のランプを"
+            },
+            {
+              "name": "COLOR",
+              "text": "赤",
+              "options": [
+                [
+                  "赤",
+                  "RED"
+                ],
+                [
+                  "黄",
+                  "YELLOW"
+                ],
+                [
+                  "緑",
+                  "GREEN"
+                ],
+                [
+                  "青",
+                  "BLUE"
+                ],
+                [
+                  "白",
+                  "WHITE"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "でゆっくり明暗 周期"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "秒"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_list_add": {
+      "colour": "#ff8c1a",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "リスト"
+            },
+            {
+              "name": "NAME",
+              "text": "リスト1"
+            },
+            {
+              "name": null,
+              "text": "に"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "を追加する"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_list_clear": {
+      "colour": "#ff8c1a",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "リスト"
+            },
+            {
+              "name": "NAME",
+              "text": "リスト1"
+            },
+            {
+              "name": null,
+              "text": "を空にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_list_contains": {
+      "colour": "#ff8c1a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "リスト"
+            },
+            {
+              "name": "NAME",
+              "text": "リスト1"
+            },
+            {
+              "name": null,
+              "text": "に"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "が含まれる"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_list_delete": {
+      "colour": "#ff8c1a",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "INDEX",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "リスト"
+            },
+            {
+              "name": "NAME",
+              "text": "リスト1"
+            },
+            {
+              "name": null,
+              "text": "の"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "番目を削除する"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_list_item": {
+      "colour": "#ff8c1a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "INDEX",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "リスト"
+            },
+            {
+              "name": "NAME",
+              "text": "リスト1"
+            },
+            {
+              "name": null,
+              "text": "の"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "番目"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_list_length": {
+      "colour": "#ff8c1a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "リスト"
+            },
+            {
+              "name": "NAME",
+              "text": "リスト1"
+            },
+            {
+              "name": null,
+              "text": "の長さ"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_list_set": {
+      "colour": "#ff8c1a",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "INDEX",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "リスト"
+            },
+            {
+              "name": "NAME",
+              "text": "リスト1"
+            },
+            {
+              "name": null,
+              "text": "の"
+            }
+          ]
+        },
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "番目を"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_list_stat": {
+      "colour": "#ff8c1a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "リスト"
+            },
+            {
+              "name": "NAME",
+              "text": "リスト1"
+            },
+            {
+              "name": null,
+              "text": "の"
+            },
+            {
+              "name": "OP",
+              "text": "合計",
+              "options": [
+                [
+                  "合計",
+                  "sum"
+                ],
+                [
+                  "平均",
+                  "average"
+                ],
+                [
+                  "最小",
+                  "min"
+                ],
+                [
+                  "最大",
+                  "max"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "lab_log_end": {
+      "colour": "#c58245",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "記録を終える"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_log_start": {
+      "colour": "#c58245",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "記録"
+            },
+            {
+              "name": "NAME",
+              "text": "Record1"
+            },
+            {
+              "name": null,
+              "text": "を始める"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_log_value": {
+      "colour": "#c58245",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "項目"
+            },
+            {
+              "name": "LABEL",
+              "text": "値1"
+            },
+            {
+              "name": null,
+              "text": "の値"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "を記録する"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_math_function": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "の"
+            },
+            {
+              "name": "FUNCTION",
+              "text": "絶対値",
+              "options": [
+                [
+                  "絶対値",
+                  "abs"
+                ],
+                [
+                  "切り下げ",
+                  "floor"
+                ],
+                [
+                  "切り上げ",
+                  "ceil"
+                ],
+                [
+                  "平方根",
+                  "sqrt"
+                ],
+                [
+                  "sin",
+                  "sin"
+                ],
+                [
+                  "cos",
+                  "cos"
+                ],
+                [
+                  "tan",
+                  "tan"
+                ],
+                [
+                  "asin",
+                  "asin"
+                ],
+                [
+                  "acos",
+                  "acos"
+                ],
+                [
+                  "atan",
+                  "atan"
+                ],
+                [
+                  "ln",
+                  "ln"
+                ],
+                [
+                  "log",
+                  "log"
+                ],
+                [
+                  "e^",
+                  "exp"
+                ],
+                [
+                  "10^",
+                  "pow10"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "lab_message_hat": {
+      "colour": "#d3a238",
+      "previous": false,
+      "next": true,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "メッセージ"
+            },
+            {
+              "name": "MESSAGE",
+              "text": "合図"
+            },
+            {
+              "name": null,
+              "text": "を受け取ったとき"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_message_wait": {
+      "colour": "#d3a238",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "メッセージ"
+            },
+            {
+              "name": "MESSAGE",
+              "text": "合図"
+            },
+            {
+              "name": null,
+              "text": "を送って待つ"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_minmax": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "と"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "の"
+            },
+            {
+              "name": "OP",
+              "text": "小さい方",
+              "options": [
+                [
+                  "小さい方",
+                  "min"
+                ],
+                [
+                  "大きい方",
+                  "max"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_change_speed": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "の速さを"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "％に変える"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_group_stop": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター"
+            },
+            {
+              "name": "PORTS",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ],
+                [
+                  "A + B",
+                  "A,B"
+                ],
+                [
+                  "A + C",
+                  "A,C"
+                ],
+                [
+                  "A + D",
+                  "A,D"
+                ],
+                [
+                  "A + E",
+                  "A,E"
+                ],
+                [
+                  "A + F",
+                  "A,F"
+                ],
+                [
+                  "B + A",
+                  "B,A"
+                ],
+                [
+                  "B + C",
+                  "B,C"
+                ],
+                [
+                  "B + D",
+                  "B,D"
+                ],
+                [
+                  "B + E",
+                  "B,E"
+                ],
+                [
+                  "B + F",
+                  "B,F"
+                ],
+                [
+                  "C + A",
+                  "C,A"
+                ],
+                [
+                  "C + B",
+                  "C,B"
+                ],
+                [
+                  "C + D",
+                  "C,D"
+                ],
+                [
+                  "C + E",
+                  "C,E"
+                ],
+                [
+                  "C + F",
+                  "C,F"
+                ],
+                [
+                  "D + A",
+                  "D,A"
+                ],
+                [
+                  "D + B",
+                  "D,B"
+                ],
+                [
+                  "D + C",
+                  "D,C"
+                ],
+                [
+                  "D + E",
+                  "D,E"
+                ],
+                [
+                  "D + F",
+                  "D,F"
+                ],
+                [
+                  "E + A",
+                  "E,A"
+                ],
+                [
+                  "E + B",
+                  "E,B"
+                ],
+                [
+                  "E + C",
+                  "E,C"
+                ],
+                [
+                  "E + D",
+                  "E,D"
+                ],
+                [
+                  "E + F",
+                  "E,F"
+                ],
+                [
+                  "F + A",
+                  "F,A"
+                ],
+                [
+                  "F + B",
+                  "F,B"
+                ],
+                [
+                  "F + C",
+                  "F,C"
+                ],
+                [
+                  "F + D",
+                  "F,D"
+                ],
+                [
+                  "F + E",
+                  "F,E"
+                ],
+                [
+                  "すべて",
+                  "ALL"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "を"
+            },
+            {
+              "name": "MODE",
+              "text": "ブレーキ",
+              "options": [
+                [
+                  "ブレーキ",
+                  "BRAKE"
+                ],
+                [
+                  "惰性",
+                  "COAST"
+                ],
+                [
+                  "保持",
+                  "HOLD"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "で停止"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_pair_angle": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター2個"
+            },
+            {
+              "name": "PORTS",
+              "text": "B + C",
+              "options": [
+                [
+                  "B + C",
+                  "B,C"
+                ],
+                [
+                  "A + B",
+                  "A,B"
+                ],
+                [
+                  "A + C",
+                  "A,C"
+                ],
+                [
+                  "A + D",
+                  "A,D"
+                ],
+                [
+                  "A + E",
+                  "A,E"
+                ],
+                [
+                  "A + F",
+                  "A,F"
+                ],
+                [
+                  "B + A",
+                  "B,A"
+                ],
+                [
+                  "B + D",
+                  "B,D"
+                ],
+                [
+                  "B + E",
+                  "B,E"
+                ],
+                [
+                  "B + F",
+                  "B,F"
+                ],
+                [
+                  "C + A",
+                  "C,A"
+                ],
+                [
+                  "C + B",
+                  "C,B"
+                ],
+                [
+                  "C + D",
+                  "C,D"
+                ],
+                [
+                  "C + E",
+                  "C,E"
+                ],
+                [
+                  "C + F",
+                  "C,F"
+                ],
+                [
+                  "D + A",
+                  "D,A"
+                ],
+                [
+                  "D + B",
+                  "D,B"
+                ],
+                [
+                  "D + C",
+                  "D,C"
+                ],
+                [
+                  "D + E",
+                  "D,E"
+                ],
+                [
+                  "D + F",
+                  "D,F"
+                ],
+                [
+                  "E + A",
+                  "E,A"
+                ],
+                [
+                  "E + B",
+                  "E,B"
+                ],
+                [
+                  "E + C",
+                  "E,C"
+                ],
+                [
+                  "E + D",
+                  "E,D"
+                ],
+                [
+                  "E + F",
+                  "E,F"
+                ],
+                [
+                  "F + A",
+                  "F,A"
+                ],
+                [
+                  "F + B",
+                  "F,B"
+                ],
+                [
+                  "F + C",
+                  "F,C"
+                ],
+                [
+                  "F + D",
+                  "F,D"
+                ],
+                [
+                  "F + E",
+                  "F,E"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "DEGREES",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "度回す"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_pair_rotation": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター2個"
+            },
+            {
+              "name": "PORTS",
+              "text": "B + C",
+              "options": [
+                [
+                  "B + C",
+                  "B,C"
+                ],
+                [
+                  "A + B",
+                  "A,B"
+                ],
+                [
+                  "A + C",
+                  "A,C"
+                ],
+                [
+                  "A + D",
+                  "A,D"
+                ],
+                [
+                  "A + E",
+                  "A,E"
+                ],
+                [
+                  "A + F",
+                  "A,F"
+                ],
+                [
+                  "B + A",
+                  "B,A"
+                ],
+                [
+                  "B + D",
+                  "B,D"
+                ],
+                [
+                  "B + E",
+                  "B,E"
+                ],
+                [
+                  "B + F",
+                  "B,F"
+                ],
+                [
+                  "C + A",
+                  "C,A"
+                ],
+                [
+                  "C + B",
+                  "C,B"
+                ],
+                [
+                  "C + D",
+                  "C,D"
+                ],
+                [
+                  "C + E",
+                  "C,E"
+                ],
+                [
+                  "C + F",
+                  "C,F"
+                ],
+                [
+                  "D + A",
+                  "D,A"
+                ],
+                [
+                  "D + B",
+                  "D,B"
+                ],
+                [
+                  "D + C",
+                  "D,C"
+                ],
+                [
+                  "D + E",
+                  "D,E"
+                ],
+                [
+                  "D + F",
+                  "D,F"
+                ],
+                [
+                  "E + A",
+                  "E,A"
+                ],
+                [
+                  "E + B",
+                  "E,B"
+                ],
+                [
+                  "E + C",
+                  "E,C"
+                ],
+                [
+                  "E + D",
+                  "E,D"
+                ],
+                [
+                  "E + F",
+                  "E,F"
+                ],
+                [
+                  "F + A",
+                  "F,A"
+                ],
+                [
+                  "F + B",
+                  "F,B"
+                ],
+                [
+                  "F + C",
+                  "F,C"
+                ],
+                [
+                  "F + D",
+                  "F,D"
+                ],
+                [
+                  "F + E",
+                  "F,E"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "ROTATIONS",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "回転する"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_pair_run": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター2個"
+            },
+            {
+              "name": "PORTS",
+              "text": "B + C",
+              "options": [
+                [
+                  "B + C",
+                  "B,C"
+                ],
+                [
+                  "A + B",
+                  "A,B"
+                ],
+                [
+                  "A + C",
+                  "A,C"
+                ],
+                [
+                  "A + D",
+                  "A,D"
+                ],
+                [
+                  "A + E",
+                  "A,E"
+                ],
+                [
+                  "A + F",
+                  "A,F"
+                ],
+                [
+                  "B + A",
+                  "B,A"
+                ],
+                [
+                  "B + D",
+                  "B,D"
+                ],
+                [
+                  "B + E",
+                  "B,E"
+                ],
+                [
+                  "B + F",
+                  "B,F"
+                ],
+                [
+                  "C + A",
+                  "C,A"
+                ],
+                [
+                  "C + B",
+                  "C,B"
+                ],
+                [
+                  "C + D",
+                  "C,D"
+                ],
+                [
+                  "C + E",
+                  "C,E"
+                ],
+                [
+                  "C + F",
+                  "C,F"
+                ],
+                [
+                  "D + A",
+                  "D,A"
+                ],
+                [
+                  "D + B",
+                  "D,B"
+                ],
+                [
+                  "D + C",
+                  "D,C"
+                ],
+                [
+                  "D + E",
+                  "D,E"
+                ],
+                [
+                  "D + F",
+                  "D,F"
+                ],
+                [
+                  "E + A",
+                  "E,A"
+                ],
+                [
+                  "E + B",
+                  "E,B"
+                ],
+                [
+                  "E + C",
+                  "E,C"
+                ],
+                [
+                  "E + D",
+                  "E,D"
+                ],
+                [
+                  "E + F",
+                  "E,F"
+                ],
+                [
+                  "F + A",
+                  "F,A"
+                ],
+                [
+                  "F + B",
+                  "F,B"
+                ],
+                [
+                  "F + C",
+                  "F,C"
+                ],
+                [
+                  "F + D",
+                  "F,D"
+                ],
+                [
+                  "F + E",
+                  "F,E"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "を速さ"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "％で回し続ける"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_pair_time": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター2個"
+            },
+            {
+              "name": "PORTS",
+              "text": "B + C",
+              "options": [
+                [
+                  "B + C",
+                  "B,C"
+                ],
+                [
+                  "A + B",
+                  "A,B"
+                ],
+                [
+                  "A + C",
+                  "A,C"
+                ],
+                [
+                  "A + D",
+                  "A,D"
+                ],
+                [
+                  "A + E",
+                  "A,E"
+                ],
+                [
+                  "A + F",
+                  "A,F"
+                ],
+                [
+                  "B + A",
+                  "B,A"
+                ],
+                [
+                  "B + D",
+                  "B,D"
+                ],
+                [
+                  "B + E",
+                  "B,E"
+                ],
+                [
+                  "B + F",
+                  "B,F"
+                ],
+                [
+                  "C + A",
+                  "C,A"
+                ],
+                [
+                  "C + B",
+                  "C,B"
+                ],
+                [
+                  "C + D",
+                  "C,D"
+                ],
+                [
+                  "C + E",
+                  "C,E"
+                ],
+                [
+                  "C + F",
+                  "C,F"
+                ],
+                [
+                  "D + A",
+                  "D,A"
+                ],
+                [
+                  "D + B",
+                  "D,B"
+                ],
+                [
+                  "D + C",
+                  "D,C"
+                ],
+                [
+                  "D + E",
+                  "D,E"
+                ],
+                [
+                  "D + F",
+                  "D,F"
+                ],
+                [
+                  "E + A",
+                  "E,A"
+                ],
+                [
+                  "E + B",
+                  "E,B"
+                ],
+                [
+                  "E + C",
+                  "E,C"
+                ],
+                [
+                  "E + D",
+                  "E,D"
+                ],
+                [
+                  "E + F",
+                  "E,F"
+                ],
+                [
+                  "F + A",
+                  "F,A"
+                ],
+                [
+                  "F + B",
+                  "F,B"
+                ],
+                [
+                  "F + C",
+                  "F,C"
+                ],
+                [
+                  "F + D",
+                  "F,D"
+                ],
+                [
+                  "F + E",
+                  "F,E"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "SECONDS",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "秒動かす"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_power": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "POWER",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "をパワー"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "％で回し続ける"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_single_angle": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター1個"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "DEGREES",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "度回す"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_single_rotation": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター1個"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "ROTATIONS",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "回転する"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_single_run": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター1個"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "を速さ"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "％で回し続ける"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_single_time": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター1個"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "SECONDS",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "秒動かす"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_stop_mode": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター"
+            },
+            {
+              "name": "PORTS",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ],
+                [
+                  "すべて",
+                  "ALL"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "の動作後の停止を"
+            },
+            {
+              "name": "MODE",
+              "text": "ブレーキ",
+              "options": [
+                [
+                  "ブレーキ",
+                  "BRAKE"
+                ],
+                [
+                  "惰性",
+                  "COAST"
+                ],
+                [
+                  "保持",
+                  "HOLD"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_motor_velocity": {
+      "colour": "#0090f5",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "モーター"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "の実際の速さ（度/秒）"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_op_add": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "＋"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_op_and": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Boolean"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Boolean"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "かつ"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_op_div": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "÷"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_op_eq": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "＝"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_op_gt": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "＞"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_op_gte": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "≧"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_op_lt": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "＜"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_op_lte": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "≦"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_op_mul": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "×"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_op_neq": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "≠"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_op_or": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Boolean"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Boolean"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "または"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_op_sub": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "−"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_pair": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "動きに使うモーターを 左"
+            },
+            {
+              "name": "LEFT",
+              "text": "B",
+              "options": [
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "右"
+            },
+            {
+              "name": "RIGHT",
+              "text": "C",
+              "options": [
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_pid": {
+      "colour": "#00b85d",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TARGET",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "PID"
+            },
+            {
+              "name": "NAME",
+              "text": "PID1"
+            },
+            {
+              "name": null,
+              "text": "目標値"
+            }
+          ]
+        },
+        {
+          "name": "MEASURED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "測定値"
+            }
+          ]
+        },
+        {
+          "name": "KP",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "P"
+            }
+          ]
+        },
+        {
+          "name": "KI",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "I"
+            }
+          ]
+        },
+        {
+          "name": "KD",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "D"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "の出力"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_pid_reset": {
+      "colour": "#f5a400",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "PID"
+            },
+            {
+              "name": "NAME",
+              "text": "PID1"
+            },
+            {
+              "name": null,
+              "text": "をリセットする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_pivot_left": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "ANGLE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で 左に"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "度ピボットターン"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_pivot_right": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "ANGLE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で 右に"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "度ピボットターン"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_pixel": {
+      "colour": "#9966ff",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "X",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "横"
+            }
+          ]
+        },
+        {
+          "name": "Y",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "縦"
+            }
+          ]
+        },
+        {
+          "name": "BRIGHTNESS",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "のライトを明るさ"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "％にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_pressed": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "フォースセンサ"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "が押されている"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_ramp": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "UP",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "加減速を"
+            },
+            {
+              "name": "PROFILE",
+              "text": "なし",
+              "options": [
+                [
+                  "なし",
+                  "none"
+                ],
+                [
+                  "台形",
+                  "trapezoid"
+                ],
+                [
+                  "S字",
+                  "s"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "にする 加速"
+            }
+          ]
+        },
+        {
+          "name": "DOWN",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "秒 減速"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "秒"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_reflection": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "カラーセンサ"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "の反射光（％）"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_reflection_compare": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "カラーセンサ"
+            },
+            {
+              "name": "PORT",
+              "text": "A",
+              "options": [
+                [
+                  "A",
+                  "A"
+                ],
+                [
+                  "B",
+                  "B"
+                ],
+                [
+                  "C",
+                  "C"
+                ],
+                [
+                  "D",
+                  "D"
+                ],
+                [
+                  "E",
+                  "E"
+                ],
+                [
+                  "F",
+                  "F"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "の反射光が"
+            },
+            {
+              "name": "OP",
+              "text": "＜",
+              "options": [
+                [
+                  "＜",
+                  "LT"
+                ],
+                [
+                  "＝",
+                  "EQ"
+                ],
+                [
+                  "＞",
+                  "GT"
+                ],
+                [
+                  "≦",
+                  "LTE"
+                ],
+                [
+                  "≧",
+                  "GTE"
+                ],
+                [
+                  "≠",
+                  "NEQ"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "％"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_return": {
+      "colour": "#f5a400",
+      "previous": true,
+      "next": false,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "このマイブロックを終了する"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_return_value": {
+      "colour": "#aa597e",
+      "previous": true,
+      "next": false,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "を返してこのマイブロックを終了する"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_return_values": {
+      "colour": "#aa597e",
+      "previous": true,
+      "next": false,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE0",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": "LABEL0",
+              "text": "値1"
+            }
+          ]
+        },
+        {
+          "name": "VALUE1",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": "LABEL1",
+              "text": "値2"
+            }
+          ]
+        },
+        {
+          "name": "END",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "を返してこのマイブロックを終了する"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_spin_left": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "ANGLE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で 左に"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "度スピンターン"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_spin_right": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "ANGLE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で 右に"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "度スピンターン"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_steering_angle": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TURN",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "ステアリング"
+            }
+          ]
+        },
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "DEGREES",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で 外側を"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "度回す"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_steering_run": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TURN",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "ステアリング"
+            }
+          ]
+        },
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "％で 回し続ける"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_steering_time": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TURN",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "ステアリング"
+            }
+          ]
+        },
+        {
+          "name": "SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "速さ"
+            }
+          ]
+        },
+        {
+          "name": "SECONDS",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "秒走る"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_string_char": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "String"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TEXT",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "文字"
+            }
+          ]
+        },
+        {
+          "name": "INDEX",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "の"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "番目"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_string_contains": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TEXT",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "文字"
+            }
+          ]
+        },
+        {
+          "name": "FIND",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "に"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "が含まれる"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_string_equal": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TEXT",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "文字"
+            }
+          ]
+        },
+        {
+          "name": "OTHER",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "と"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "が同じ"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_string_from_number": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "String"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "数値"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "を文字にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_string_to_number": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TEXT",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "文字"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "を数値にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_sync": {
+      "colour": "#0090f5",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "2個のモーターの同期補正を"
+            },
+            {
+              "name": "ENABLED",
+              "text": "有効",
+              "options": [
+                [
+                  "有効",
+                  "TRUE"
+                ],
+                [
+                  "無効",
+                  "FALSE"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_tank_angle": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "LEFT_SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "左の速さ"
+            }
+          ]
+        },
+        {
+          "name": "RIGHT_SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％ 右の速さ"
+            }
+          ]
+        },
+        {
+          "name": "DEGREES",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で速い側を"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "度回す"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_tank_run": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "LEFT_SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "左の速さ"
+            }
+          ]
+        },
+        {
+          "name": "RIGHT_SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％ 右の速さ"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "％で回し続ける"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_tank_time": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "LEFT_SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "左の速さ"
+            }
+          ]
+        },
+        {
+          "name": "RIGHT_SPEED",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％ 右の速さ"
+            }
+          ]
+        },
+        {
+          "name": "SECONDS",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "％で"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "秒走る"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_text": {
+      "colour": "#9966ff",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TEXT",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "本体に文字"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "を表示"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_text_get": {
+      "colour": "#ff8c1a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "String"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "文字"
+            },
+            {
+              "name": "NAME",
+              "text": "文字1"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_text_set": {
+      "colour": "#ff8c1a",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "文字"
+            },
+            {
+              "name": "NAME",
+              "text": "文字1"
+            },
+            {
+              "name": null,
+              "text": "を"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_timer": {
+      "colour": "#34ccf1",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "タイマー（秒）"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_timer_reset": {
+      "colour": "#34ccf1",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "タイマーを0にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_tone_ms": {
+      "colour": "#a570b3",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "FREQUENCY",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "音"
+            }
+          ]
+        },
+        {
+          "name": "MS",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "Hz を"
+            }
+          ]
+        },
+        {
+          "name": "VOLUME",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "ミリ秒 鳴らす 音量"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_tread": {
+      "colour": "#ff4ccd",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "トレッド（タイヤ中心どうしの間隔）を"
+            },
+            {
+              "name": "TREAD",
+              "text": "112"
+            },
+            {
+              "name": null,
+              "text": "mm にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_wait": {
+      "colour": "#f5a400",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "SECONDS",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "秒待つ"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_wait_until": {
+      "colour": "#f5a400",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "BOOL",
+          "type": 1,
+          "check": [
+            "Boolean"
+          ],
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "まで待つ"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_when": {
+      "colour": "#d3a238",
+      "previous": false,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "BOOL",
+          "type": 1,
+          "check": [
+            "Boolean"
+          ],
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "になったとき"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_when_changed": {
+      "colour": "#d3a238",
+      "previous": false,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": null,
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "が変わったとき"
+            }
+          ]
+        }
+      ]
+    },
+    "lab_yaw_reset": {
+      "colour": "#34ccf1",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "本体の向きを0にする"
+            }
+          ]
+        }
+      ]
+    },
+    "lists_create_with": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Array"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "ADD0",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "以下を使ってリストを作成："
+            }
+          ]
+        },
+        {
+          "name": "ADD1",
+          "type": 1,
+          "check": null,
+          "fields": []
+        },
+        {
+          "name": "ADD2",
+          "type": 1,
+          "check": null,
+          "fields": []
+        }
+      ]
+    },
+    "lists_getIndex": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Array"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "リスト"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "MODE",
+              "text": "取得",
+              "options": [
+                [
+                  "取得",
+                  "GET"
+                ],
+                [
+                  "取得して削除",
+                  "GET_REMOVE"
+                ],
+                [
+                  "削除",
+                  "REMOVE"
+                ]
+              ]
+            },
+            {
+              "name": "SPACE",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "WHERE",
+              "text": "#",
+              "options": [
+                [
+                  "#",
+                  "FROM_START"
+                ],
+                [
+                  "位置：後ろから",
+                  "FROM_END"
+                ],
+                [
+                  "最初",
+                  "FIRST"
+                ],
+                [
+                  "最後",
+                  "LAST"
+                ],
+                [
+                  "ランダム",
+                  "RANDOM"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "AT",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        }
+      ]
+    },
+    "lists_indexOf": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Array"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "リスト"
+            }
+          ]
+        },
+        {
+          "name": "FIND",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": "END",
+              "text": "で以下のアイテムの最初の出現箇所を検索：",
+              "options": [
+                [
+                  "で以下のアイテムの最初の出現箇所を検索：",
+                  "FIRST"
+                ],
+                [
+                  "で以下のテキストの最後の出現箇所を検索：",
+                  "LAST"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "lists_isEmpty": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "String",
+            "Array"
+          ],
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "が空"
+            }
+          ]
+        }
+      ]
+    },
+    "lists_length": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "String",
+            "Array"
+          ],
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "の長さ"
+            }
+          ]
+        }
+      ]
+    },
+    "lists_setIndex": {
+      "colour": "#00b85b",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "LIST",
+          "type": 1,
+          "check": [
+            "Array"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "リスト"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "MODE",
+              "text": "セット",
+              "options": [
+                [
+                  "セット",
+                  "SET"
+                ],
+                [
+                  "挿入位置：",
+                  "INSERT"
+                ]
+              ]
+            },
+            {
+              "name": "SPACE",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "WHERE",
+              "text": "#",
+              "options": [
+                [
+                  "#",
+                  "FROM_START"
+                ],
+                [
+                  "位置：後ろから",
+                  "FROM_END"
+                ],
+                [
+                  "最初",
+                  "FIRST"
+                ],
+                [
+                  "最後",
+                  "LAST"
+                ],
+                [
+                  "ランダム",
+                  "RANDOM"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "name": "AT",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "TO",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "値："
+            }
+          ]
+        }
+      ]
+    },
+    "logic_boolean": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "BOOL",
+              "text": "true",
+              "options": [
+                [
+                  "true",
+                  "TRUE"
+                ],
+                [
+                  "false",
+                  "FALSE"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "logic_compare": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": null,
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": "OP",
+              "text": "=",
+              "options": [
+                [
+                  "=",
+                  "EQ"
+                ],
+                [
+                  "≠",
+                  "NEQ"
+                ],
+                [
+                  "‏<",
+                  "LT"
+                ],
+                [
+                  "‏≤",
+                  "LTE"
+                ],
+                [
+                  "‏>",
+                  "GT"
+                ],
+                [
+                  "‏≥",
+                  "GTE"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "logic_negate": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "BOOL",
+          "type": 1,
+          "check": [
+            "Boolean"
+          ],
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "ではない"
+            }
+          ]
+        }
+      ]
+    },
+    "logic_operation": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Boolean"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Boolean"
+          ],
+          "fields": [
+            {
+              "name": "OP",
+              "text": "かつ",
+              "options": [
+                [
+                  "かつ",
+                  "AND"
+                ],
+                [
+                  "または",
+                  "OR"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "math_arithmetic": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "A",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "B",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": "OP",
+              "text": "+",
+              "options": [
+                [
+                  "+",
+                  "ADD"
+                ],
+                [
+                  "-",
+                  "MINUS"
+                ],
+                [
+                  "×",
+                  "MULTIPLY"
+                ],
+                [
+                  "÷",
+                  "DIVIDE"
+                ],
+                [
+                  "^",
+                  "POWER"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "math_change": {
+      "colour": "#c58245",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "DELTA",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": "VAR",
+              "text": "項目",
+              "options": [
+                [
+                  "項目",
+                  "variable:項目"
+                ],
+                [
+                  "「項目」変数の名前を変える",
+                  "RENAME_VARIABLE_ID"
+                ],
+                [
+                  "変数 '項目' を削除",
+                  "DELETE_VARIABLE_ID"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "を"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "増やす"
+            }
+          ]
+        }
+      ]
+    },
+    "math_constant": {
+      "colour": "#000000",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "CONSTANT",
+              "text": "π",
+              "options": [
+                [
+                  "π",
+                  "PI"
+                ],
+                [
+                  "e",
+                  "E"
+                ],
+                [
+                  "φ",
+                  "GOLDEN_RATIO"
+                ],
+                [
+                  "sqrt(2)",
+                  "SQRT2"
+                ],
+                [
+                  "sqrt(½)",
+                  "SQRT1_2"
+                ],
+                [
+                  "∞",
+                  "INFINITY"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "math_constrain": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "LOW",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "を"
+            }
+          ]
+        },
+        {
+          "name": "HIGH",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "以上"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "以下の範囲に制限"
+            }
+          ]
+        }
+      ]
+    },
+    "math_modulo": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "DIVIDEND",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "DIVISOR",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "÷"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "の余り"
+            }
+          ]
+        }
+      ]
+    },
+    "math_number": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "NUM",
+              "text": "0"
+            }
+          ]
+        }
+      ]
+    },
+    "math_random_int": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "FROM",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": []
+        },
+        {
+          "name": "TO",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "から"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "までのランダムな整数"
+            }
+          ]
+        }
+      ]
+    },
+    "math_round": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "NUM",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": "OP",
+              "text": "四捨五入",
+              "options": [
+                [
+                  "四捨五入",
+                  "ROUND"
+                ],
+                [
+                  "切り上げ",
+                  "ROUNDUP"
+                ],
+                [
+                  "切り捨て",
+                  "ROUNDDOWN"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "math_single": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "NUM",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": "OP",
+              "text": "平方根",
+              "options": [
+                [
+                  "平方根",
+                  "ROOT"
+                ],
+                [
+                  "絶対値",
+                  "ABS"
+                ],
+                [
+                  "-",
+                  "NEG"
+                ],
+                [
+                  "ln",
+                  "LN"
+                ],
+                [
+                  "log10",
+                  "LOG10"
+                ],
+                [
+                  "e^",
+                  "EXP"
+                ],
+                [
+                  "10^",
+                  "POW10"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "math_trig": {
+      "colour": "#00b84a",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "NUM",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": "OP",
+              "text": "sin",
+              "options": [
+                [
+                  "sin",
+                  "SIN"
+                ],
+                [
+                  "cos",
+                  "COS"
+                ],
+                [
+                  "tan",
+                  "TAN"
+                ],
+                [
+                  "asin",
+                  "ASIN"
+                ],
+                [
+                  "acos",
+                  "ACOS"
+                ],
+                [
+                  "atan",
+                  "ATAN"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "procedures_callnoreturn": {
+      "colour": "#aa597e",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TOPROW",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "NAME",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+    "procedures_callreturn": {
+      "colour": "#aa597e",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TOPROW",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "NAME",
+              "text": ""
+            }
+          ]
+        }
+      ]
+    },
+    "procedures_defnoreturn": {
+      "colour": "#aa597e",
+      "previous": false,
+      "next": false,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "定義"
+            },
+            {
+              "name": "NAME",
+              "text": "名前なし"
+            },
+            {
+              "name": "PARAMS",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "name": "STACK",
+          "type": 3,
+          "check": null,
+          "fields": []
+        }
+      ]
+    },
+    "procedures_defreturn": {
+      "colour": "#aa597e",
+      "previous": false,
+      "next": false,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "関数"
+            },
+            {
+              "name": "NAME",
+              "text": "名前なし"
+            },
+            {
+              "name": "PARAMS",
+              "text": ""
+            }
+          ]
+        },
+        {
+          "name": "STACK",
+          "type": 3,
+          "check": null,
+          "fields": []
+        },
+        {
+          "name": "RETURN",
+          "type": 1,
+          "check": [
+            "Number"
+          ],
+          "fields": [
+            {
+              "name": null,
+              "text": "返す"
+            },
+            {
+              "name": "RETURN_LABEL0",
+              "text": "値"
+            }
+          ]
+        }
+      ]
+    },
+    "spike_start": {
+      "colour": "#d3a238",
+      "previous": false,
+      "next": true,
+      "output": null,
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "▶ スタート"
+            }
+          ]
+        }
+      ]
+    },
+    "text": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "String"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "“"
+            },
+            {
+              "name": "TEXT",
+              "text": ""
+            },
+            {
+              "name": null,
+              "text": "”"
+            }
+          ]
+        }
+      ]
+    },
+    "text_isEmpty": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Boolean"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "String",
+            "Array"
+          ],
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "が空"
+            }
+          ]
+        }
+      ]
+    },
+    "text_join": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "String"
+      ],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "ADD0",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "テキストを結合して作成："
+            }
+          ]
+        },
+        {
+          "name": "ADD1",
+          "type": 1,
+          "check": null,
+          "fields": []
+        }
+      ]
+    },
+    "text_length": {
+      "colour": "#00b85b",
+      "previous": false,
+      "next": false,
+      "output": [
+        "Number"
+      ],
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": [
+            "String",
+            "Array"
+          ],
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "の長さ"
+            }
+          ]
+        }
+      ]
+    },
+    "text_print": {
+      "colour": "#00b85b",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "TEXT",
+          "type": 1,
+          "check": null,
+          "fields": []
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "を表示"
+            }
+          ]
+        }
+      ]
+    },
+    "variables_get": {
+      "colour": "#c58245",
+      "previous": false,
+      "next": false,
+      "output": [],
+      "inline": false,
+      "inputs": [
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": "VAR",
+              "text": "項目",
+              "options": [
+                [
+                  "項目",
+                  "variable:項目"
+                ],
+                [
+                  "「項目」変数の名前を変える",
+                  "RENAME_VARIABLE_ID"
+                ],
+                [
+                  "変数 '項目' を削除",
+                  "DELETE_VARIABLE_ID"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "variables_set": {
+      "colour": "#c58245",
+      "previous": true,
+      "next": true,
+      "output": null,
+      "inline": true,
+      "inputs": [
+        {
+          "name": "VALUE",
+          "type": 1,
+          "check": null,
+          "fields": [
+            {
+              "name": "VAR",
+              "text": "項目",
+              "options": [
+                [
+                  "項目",
+                  "variable:項目"
+                ],
+                [
+                  "「項目」変数の名前を変える",
+                  "RENAME_VARIABLE_ID"
+                ],
+                [
+                  "変数 '項目' を削除",
+                  "DELETE_VARIABLE_ID"
+                ]
+              ]
+            },
+            {
+              "name": null,
+              "text": "に"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": 5,
+          "check": null,
+          "fields": [
+            {
+              "name": null,
+              "text": "をセット"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

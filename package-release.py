@@ -2,7 +2,7 @@ from pathlib import Path
 import shutil,zipfile,hashlib,json
 root=Path(__file__).resolve().parent
 runtime=root/'node_modules/electron/dist'
-out=root/'release/SBL-RT-Windows-0.2.0'
+out=root/'release/SBL-RT-Windows-0.3.0'
 out.mkdir(parents=True,exist_ok=True)
 for p in runtime.iterdir():
     target=out/('SBL-RT.exe' if p.name=='electron.exe' else p.name)

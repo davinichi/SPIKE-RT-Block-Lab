@@ -1,6 +1,6 @@
-# SBL-RT Windows 0.2.0
+# SBL-RT Windows 0.3.0
 
-SPIKE Prime Large Hub向けのブロック編集・C生成Windows試作版。既存SBL 0.7.0と比較し、初版の9種類からパレット68種類へ拡充しました（変数カテゴリの動的ブロックは別計数）。実機未検証です。
+SPIKE Prime Large Hub向けのブロック編集・C生成Windows試作版。指定された公開SBLのSites保存版23（commit 9c81c6fab69737319230440b38a215ba2ee7a3aa）を正本として、同じ15グループ・文言・順番・引数・選択肢を使います。実機未検証です。
 
 ## 起動・公開先
 
@@ -36,3 +36,15 @@ TEST_RESULTS.mdとActionsの完了状態を確認してください。ビルド�
 [導入・DFU・標準環境への復帰](web/guide.html) ／ [ソースの出典・ライセンス](THIRD_PARTY.md)
 
 LEGO公式アプリではありません。Fの制約を確認する際の参考資料: https://qiita.com/koushiro/items/480559806f5572902c5c
+
+## SBL UI contract in 0.3.0
+
+The seven files in web/sbl-reference are unchanged copies of the retrieved published SBL source. provenance.json records their SHA-256 hashes. The previous local SBL 0.7.0 files match this published source. The live page itself returned 403; the authenticated Sites source repository supplied the saved version's exact commit. No SBL source or Site was edited.
+
+All 15 category names and their order, 119 static palette entries (including different variants of the same block), and 141 definition signatures are checked against tests/fixtures/sbl-ui-v23.json, generated independently from the retrieved SBL source. The signature covers visible fields, menu options, input names/types, colours and connection shape. Random variable IDs are normalized only during comparison. Dynamic variable/procedure/argument categories use the unchanged SBL callbacks. The standard Japanese labels and Zelos renderer are enabled. Legacy-only blocks remain loadable for old SBL-RT projects but are not added to the canonical palette.
+
+The RT-specific difference is capability warnings and explicit export errors. Unsupported commands and F port values can be edited, saved and loaded without remapping. Unknown definitions or malformed ports are rejected before loading, leaving the current project and original file intact. This does not implement direct .spikelab/.ev3lab import. Full execution compatibility across the four environments remains future work.
+
+SBL-style procedure definitions/calls, two named numeric arguments, one return, early returns and distance/reflection/force comparisons translate to the existing three-C-file backend. The SBL dialog may store up to eight arguments/outputs, preserving the original interface; values beyond the RT backend's 2/1 limits block generation. Parameter assignment is currently unsupported. Numeric display remains -99..99 with fractional truncation, unlike SBL scrolling; see web/comparison.html for all limits.
+
+Run node audit-sbl.mjs to render the per-category comparison and complete machine-readable audit record, then python prepare-site.py for Pages. Run npm test for the equality and project-preservation checks. Native UI integration is available through SBL_SMOKE=1 and SBL_UI_SMOKE=1 (no Hub access).

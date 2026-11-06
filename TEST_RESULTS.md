@@ -1,23 +1,21 @@
-# Validation status — SBL-RT 0.2.0
+# Validation status — SBL-RT 0.3.0
 
 ## Completed locally
 
-- Node.js 24: 17 tests pass. Includes every visible palette block's translation and Blockly save/load round trip, numeric variable identity, procedure arguments/return values, lazy Boolean evaluation, invalid ports, unsupported instructions, recursion and old project loading.
-- Palette: 68 distinct visible block types plus the variable category's dynamic blocks. The implementation also recognizes selected standard Blockly equivalents used by serialized projects.
-- GCC 11 host integration: all three C translation units compiled separately with -Wall -Wextra -Werror and linked for ten samples: display, motor, distance, myblock, extended, motor_angle, sensors, math_fault lazy_logic and global_end.
-- Thirteen fake-device executions pass: the ten samples, stop during timed and angle motion, and a stalled-angle 180-second timeout. Checks include result=10 from variables/procedure/loop computation, Python-style signed modulo and rounding, zero-division stopping before the next motor command, and global program exit from inside a My Block.
-- Windows Electron: 0.2.0 starts, draws the expanded categories, generates all eleven source/configuration files and exits with code 0 from a normal temporary directory. Screenshot visually reviewed. GPU acceleration is disabled; the Electron sandbox remains enabled. No Windows ACL/security settings changed.
+- Retrieved the specified public SBL Site's saved version 23 source commit 9c81c6fab69737319230440b38a215ba2ee7a3aa via the Sites source repository. The seven block-related files match the earlier local SBL 0.7.0 byte for byte. The live page still returned 403, so no live-screen observation is claimed. The user confirmed the correct category count is 15.
+- Node.js 24: 20 tests pass. Automatic equality covers all 15 groups, names/order, 119 static palette entries, and 141 block-definition signatures: visible Japanese fields, menu options, input names/types, colours and connection shape. Random variable IDs are normalized. The fixture was generated from the separately retrieved source. Hash checks ensure the vendored files remain unmodified. Dynamic categories reuse the unchanged SBL callbacks.
+- Supported palette entries generate C; all unsupported palette entries load/save/reload and fail generation explicitly. Unsupported/F values remain saved without port substitution. SBL-format numeric variable identities, named arguments and procedure returns are tested, along with legacy SBL-RT loading. No claim is made that .spikelab/.ev3lab files are imported directly.
+- GCC 11 host integration: all three C translation units separately compile with -Wall -Wextra -Werror and link for ten samples. Thirteen fake-device executions pass, including stop during timed/angle motion, stalled-angle timeout, zero division, lazy Boolean evaluation and global end inside a procedure.
+- Windows Electron: 0.3.0 starts with sandbox enabled and GPU acceleration disabled. Fifteen categories open and draw; the SBL My Block dialog creates a canonical return definition, which saves/reloads. A named unsupported recording block and a distance sensor on F remain intact after reload and block C export. Normal projects still generate all eleven source/configuration files. Hidden integration runner exits with code 0. Screenshots reviewed. No ACL or security settings changed.
 
 ## Official target build and distribution
 
-The workflow compiles seven hardware samples with official SPIKE-RT v0.2.0 (62a2824e4b513aaf65fde4670ccbc5620e1733a6) and the official ARM GCC 10.3-2021.10 toolchain, without patching the SDK. Candidate workflow 42140086729 successfully built all seven samples, including extended expressions/procedures, angle motion and additional sensors. The release-tag workflow performs the final build and packaging for the downloadable release:
+The previous 0.2.0 release workflow 42140448333 successfully compiled seven samples using official SPIKE-RT v0.2.0 (62a2824e4b513aaf65fde4670ccbc5620e1733a6) and official ARM GCC 10.3-2021.10, without SDK patches. The 0.3.0 candidate/release workflows re-run these builds and Windows packaging. Check their actual result before treating 0.3.0 target builds as verified:
 
 https://github.com/davinichi/SPIKE-RT-Block-Lab/actions
 
-The completed 0.2.0 candidate result is separate from physical hardware verification. Release workflows also create the unsigned Windows ZIP and sample firmware ZIP. Workflow definitions alone are not proof of success.
+## Not performed and remaining differences
 
-## Not performed
+No Hub flashing, physical startup, stop latency, sensor calibration, encoder accuracy, unplugged operation, DFU driver installation or standard OS restoration was tested. The host device layer is a simulation; target.json retains hardwareTested:false.
 
-No Hub flashing, physical startup, stop latency, sensor calibration, encoder accuracy, power-cycle, unplugged operation, Windows DFU driver installation or standard OS restoration has been tested for 0.2.0. The host device layer is a simulation. target.json keeps hardwareTested:false.
-
-The linked SBL preview returned HTTP 403 in the research environment. Comparison used the existing local SBL 0.7.0 source, not an observed live preview screen. See web/comparison.html for feature differences and unsupported blocks.
+SBL block presentation now uses the same source and the canonical 15 groups; RT warning icons and capability errors are deliberate additions. Unsupported events, vehicle motion, ramp/sync, orientation/colour ID, PID, CSV, text variables/lists, random, abacus and animated lamp blocks remain editable/preservable but cannot generate C. The form preserves SBL's 8-argument/8-output data model, while RT export accepts only 2 numeric arguments/1 output. All other limits and numeric/text display differences are recorded in web/comparison.html and web/sbl-ui-audit.json. Four-environment execution/project compatibility is not yet implemented.
