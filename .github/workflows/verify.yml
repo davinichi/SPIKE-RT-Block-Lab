@@ -106,3 +106,19 @@ jobs:
           } else {
             gh release create $env:GITHUB_REF_NAME release/*.zip* --prerelease --title 'SBL-RT Windows 0.1.0 experimental' --notes 'Windows x64 prototype. Hub hardware verification is pending. Read the firmware guide before writing. The application is unsigned.'
           }
+  release-firmware:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [tests, firmware, windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: sample-firmware
+          path: firmware
+      - run: cd firmware && zip -r ../SBL-RT-sample-firmware.zip .
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release upload "$GITHUB_REF_NAME" SBL-RT-sample-firmware.zip
