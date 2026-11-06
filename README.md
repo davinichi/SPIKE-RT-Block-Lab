@@ -1,18 +1,18 @@
-# SBL-RT Windows 0.1.0
+# SBL-RT Windows 0.1.1
 
 SPIKE Prime Large Hub向け、ブロックでCプログラムを作るWindows x64試作版。
 EBL-RTの作品操作・編集・生成・転送パネルを参考にした独立アプリです。
 
 ## 起動
 
-ReleasesのSBL-RT-Windows-0.1.0.zipをすべて展開し、SBL-RT.exeを起動します。
+ReleasesのSBL-RT-Windows-0.1.1.zipをすべて展開し、SBL-RT.exeを起動します。
 編集とC生成はオフラインで動作します。完全なSPIKE-RTコンパイラ環境は同梱しません。
 ローカルDockerビルドには利用者が準備した公式SDK v0.2.0（サブモジュール含む）、Git、Docker、公式richイメージが必要です。
 アプリはSDKをコピーしてビルドし、元のSDKを変更しません。
 
 ## 対応範囲
 
-- 単一スタート、画像4種類、待機、時間指定モーター（90/180/360度毎秒、正逆転）
+- 単一スタート、画像4種類、待機、時間指定モーター（90/180/360度毎秒、正逆転、A〜E）
 - 回数ループ、無限ループ、距離センサーの条件分岐
 - 引数なしマイブロック定義と呼び出し（再帰不可）
 - .sblrt作品の保存・読込・ローカル自動保存
@@ -44,3 +44,9 @@ TEST_RESULTS.mdにローカル自動試験・Windows起動試験・公式ツー�
 生成物のtarget.jsonはhardwareTested:falseです。
 
 LEGO公式アプリではありません。出典とライセンスはTHIRD_PARTY.md。
+
+## 0.1.1 ポートFの訂正
+
+公式SPIKE-RT v0.2.0ではFはデバッグUART用に予約されています。0.1.0でFを提示した点を訂正し、選択・生成・作品読込の段階で拒否します。SDKの非公式F開放パッチは適用していません。
+参考: https://qiita.com/koushiro/items/480559806f5572902c5c
+一次根拠: https://github.com/spike-rt/pybricks-micropython/blob/abb77e921453c15bf8155feedc637e364f20f55c/lib/pbio/platform/prime_hub_spike-rt/pbdrvconfig.h

@@ -1,6 +1,7 @@
 // Shared, target-independent program model. No Blockly, DOM or device APIs.
 export const VERSION = '0.7.0';
-export const PORTS = ['A', 'B', 'C', 'D', 'E', 'F'];
+// Official SPIKE-RT v0.2.0 reserves F for the ASP3 debug UART.
+export const PORTS = ['A', 'B', 'C', 'D', 'E'];
 export const IMAGES = {
   smile: ['00000','01010','00000','10001','01110'],
   heart: ['01010','11111','11111','01110','00100'],

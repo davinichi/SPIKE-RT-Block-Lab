@@ -9,6 +9,8 @@ export function validate(program) {
   let count=0;
   const visit=(body,depth=0)=>{if(!Array.isArray(body)||depth>20)throw Error('入れ子が深すぎます。');for(const b of body){if(!b||++count>500)throw Error('ブロックは500個までです。');if(b.type==='call'){if(!names.has(b.name))throw Error('マイブロックが未定義です: '+b.name);}else if(!['wait','motor','image','repeat','forever','ifDistance'].includes(b.type))throw Error('未対応の命令です: '+b.type);if(b.body)visit(b.body,depth+1);if(b.then)visit(b.then,depth+1);if(b.else)visit(b.else,depth+1);}};
   visit(program.body);procs.forEach(p=>visit(p.body));
+  const checkPorts=body=>{for(const b of body){if((b.type==='motor'||b.type==='ifDistance')&&b.port==='F')throw Error('ポートFは公式SPIKE-RT v0.2.0ではデバッグ用です。A〜Eを選んでください。');for(const k of ['body','then','else'])if(b[k])checkPorts(b[k]);}};
+  checkPorts(program.body);procs.forEach(p=>checkPorts(p.body));
   const seen=new Set(),active=new Set();
   const refs=body=>body.flatMap(b=>[...(b.type==='call'?[b.name]:[]),...refs(b.body??[]),...refs(b.then??[]),...refs(b.else??[])]);
   const graph=new Map(procs.map(p=>[p.name,refs(p.body)]));
@@ -56,11 +58,11 @@ export function generateProject(program,cdl){
  default:throw Error('未対応の命令です。');}}return text;}
  const procHeader='#pragma once\n#include <stdbool.h>\nbool sbl_program(void);\n'+[...ids.values()].map(id=>`bool ${id}(void);`).join('\n')+'\n';
  const myblocks='#include "sbl_myblocks.h"\n#include "sbl_rt_runtime.h"\n'+procs.map(p=>`\n/* My Block ${JSON.stringify(p.name).replaceAll('*/','* /')} */\nbool ${ids.get(p.name)}(void) {\n${seq(p.body)}    return true;\n}\n`).join('')+`\nbool sbl_program(void) {\n${seq(program.body)}    return true;\n}\n`;
- const app=`/* SBL-RT Windows 0.1.0 / SPIKE-RT v0.2.0. Hardware verification pending. */\n#include "app.h"\n#include "sbl_rt_runtime.h"\n#include "sbl_myblocks.h"\n#include <t_syslog.h>\nvoid main_task(intptr_t exinf) {\n    (void)exinf;\n    bool success = false;\n    if (!sbl_initialize()) goto cleanup;\n    syslog(LOG_NOTICE, "READY: press and release center button");\n    if (!await_start()) goto cleanup;\n    success = sbl_program();\ncleanup:\n    stop_all();\n    syslog(LOG_NOTICE, success ? "DONE" : "STOPPED / ERROR");\n    ext_tsk();\n}\n`;
+ const app=`/* SBL-RT Windows 0.1.1 / SPIKE-RT v0.2.0. Hardware verification pending. */\n#include "app.h"\n#include "sbl_rt_runtime.h"\n#include "sbl_myblocks.h"\n#include <t_syslog.h>\nvoid main_task(intptr_t exinf) {\n    (void)exinf;\n    bool success = false;\n    if (!sbl_initialize()) goto cleanup;\n    syslog(LOG_NOTICE, "READY: press and release center button");\n    if (!await_start()) goto cleanup;\n    success = sbl_program();\ncleanup:\n    stop_all();\n    syslog(LOG_NOTICE, success ? "DONE" : "STOPPED / ERROR");\n    ext_tsk();\n}\n`;
  if(typeof cdl!=='string'||!cdl.includes('kernel.cdl'))throw Error('構成テンプレートがありません。');
  return {'app.c':app,'sbl_myblocks.c':myblocks,'sbl_rt_runtime.c':runtime,'sbl_myblocks.h':procHeader,'sbl_rt_runtime.h':header+externs+nearDecl,
  'app.h':'#pragma once\n#include <kernel.h>\n#define MAIN_PRIORITY 5\n#define MAIN_STACK_SIZE 8192\n#ifndef TOPPERS_MACRO_ONLY\nextern void main_task(intptr_t exinf);\n#endif\n',
  'app.cfg':'INCLUDE("tecsgen.cfg");\n#include "app.h"\nCRE_TSK(APP_MAIN_TASK, { TA_ACT, 0, main_task, MAIN_PRIORITY, MAIN_STACK_SIZE, NULL });\n',
  'app.cdl':cdl,'Makefile.inc':'APPL_COBJS += sbl_myblocks.o sbl_rt_runtime.o\n',
- 'program.json':JSON.stringify(program,null,2)+'\n','target.json':JSON.stringify({generator:'SBL-RT Windows',version:'0.1.0',target:'SPIKE-RT',ref:'v0.2.0',hardwareTested:false},null,2)+'\n'};
+ 'program.json':JSON.stringify(program,null,2)+'\n','target.json':JSON.stringify({generator:'SBL-RT Windows',version:'0.1.1',target:'SPIKE-RT',ref:'v0.2.0',hardwareTested:false},null,2)+'\n'};
 }
