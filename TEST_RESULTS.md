@@ -10,11 +10,11 @@
 
 ## Official target build and distribution
 
-The workflow compiles seven hardware samples with official SPIKE-RT v0.2.0 (62a2824e4b513aaf65fde4670ccbc5620e1733a6) and the official ARM GCC 10.3-2021.10 toolchain, without patching the SDK. Check the completed v0.2.0 workflow run for the actual target-build result and downloadable artifacts:
+The workflow compiles seven hardware samples with official SPIKE-RT v0.2.0 (62a2824e4b513aaf65fde4670ccbc5620e1733a6) and the official ARM GCC 10.3-2021.10 toolchain, without patching the SDK. Candidate workflow 42140086729 successfully built all seven samples, including extended expressions/procedures, angle motion and additional sensors. The release-tag workflow performs the final build and packaging for the downloadable release:
 
 https://github.com/davinichi/SPIKE-RT-Block-Lab/actions
 
-Previous release 0.1.1 passed the official build. That is not proof that new 0.2.0 code passes; only its own workflow result is evidence. Release workflows also create the unsigned Windows ZIP and sample firmware ZIP. Workflow definitions alone are not proof of success.
+The completed 0.2.0 candidate result is separate from physical hardware verification. Release workflows also create the unsigned Windows ZIP and sample firmware ZIP. Workflow definitions alone are not proof of success.
 
 ## Not performed
 

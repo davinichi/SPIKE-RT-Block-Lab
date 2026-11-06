@@ -93,6 +93,6 @@ bool sbl_pixel(double x,double y,double b) {if(!keep_running()||!sbl_range(x,0,4
 bool sbl_display_number(double n) {if(!keep_running()||!sbl_range(n,-99,99))return false;return check_error(hub_display_number((int8_t)n));}
 bool sbl_display_text(const char *text) {for(unsigned i=0;text[i];i++){if(!keep_running()||!check_error(hub_display_char(text[i]))||!wait_ms(300)||!check_error(hub_display_off())||!wait_ms(50))return false;}return keep_running();}
 bool sbl_light(int color) {static const pbio_color_t colors[]={PBIO_COLOR_RED,PBIO_COLOR_YELLOW,PBIO_COLOR_GREEN,PBIO_COLOR_BLUE,PBIO_COLOR_WHITE,PBIO_COLOR_MAGENTA};if(!keep_running()||color<0||color>5)return false;return check_error(hub_light_on_color(colors[color]));}
-bool sbl_tone(double hz,double ms,double volume) {if(!keep_running()||!sbl_range(hz,32,20000)||!sbl_range(ms,0,60000)||!sbl_range(volume,0,100))return false;hub_speaker_set_volume((uint8_t)volume);hub_speaker_play_tone((uint16_t)hz,-1);bool ok=wait_ms((uint32_t)ms);hub_speaker_stop();return ok;}
+bool sbl_tone(double hz,double ms,double volume) {if(!keep_running()||!sbl_range(hz,64,20000)||!sbl_range(ms,0,60000)||!sbl_range(volume,0,100))return false;hub_speaker_set_volume((uint8_t)volume);hub_speaker_play_tone((uint16_t)hz,-1);bool ok=wait_ms((uint32_t)ms);hub_speaker_stop();return ok;}
 void sbl_sound_stop(void) {hub_speaker_stop();}
 `;

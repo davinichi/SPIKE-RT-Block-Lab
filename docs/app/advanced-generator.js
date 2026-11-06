@@ -11,10 +11,10 @@ export function validateAdvanced(p){
  const device=(port,kind)=>{if(typeof port!=='string'||port.length!==1||!'ABCDE'.includes(port))throw Error('ポートFはデバッグ用です。ポートはA〜Eのみ選べます。');if(devices.has(port)&&devices.get(port)!==kind)throw Error('同じポートに異なる機器が指定されています: '+port);devices.set(port,kind);};
  const ports=(s,all=false)=>{if(all&&s==='ALL')return 0;if(typeof s!=='string')throw Error('モーターポートを確認してください。');const a=s.split(',');if(a.length>2||new Set(a).size!==a.length)throw Error('異なるモーターポートを選んでください。');for(const x of a)device(x,'motor');return a.reduce((m,x)=>m|(1<<'ABCDE'.indexOf(x)),0);};
  const variable=n=>{if(typeof n!=='string'||!n||n.length>80)throw Error('変数名を確認してください。');if(!variables.has(n))variables.set(n,variables.size);if(variables.size>32)throw Error('数値変数は32個までです。');};
- const edges=new Map([['$main',new Set()],...procs.map(q=>[q.name,new Set()])]);
+ const MAIN=Symbol('main');const edges=new Map([[MAIN,new Set()],...procs.map(q=>[q.name,new Set()])]);
  function call(n,owner,d){if(!names.has(n.name))throw Error('マイブロックが未定義です: '+n.name);if(!Array.isArray(n.args??[])||(n.args??[]).length>2)throw Error('引数は２個までです。');edges.get(owner).add(n.name);for(const a of n.args??[])expr(a,owner,d+1);}
  function expr(x,owner,d=0){if(++expressions>4000||d>24)throw Error('式が多すぎるか入れ子が深すぎます。');if(typeof x==='number'){if(!Number.isFinite(x))throw Error('有限の数値を使ってください。');return;}if(!x||typeof x!=='object')throw Error('式の形式が不正です。');switch(x.kind){
- case 'var':variable(x.name);break;case 'param':if(owner==='$main'||![0,1].includes(x.index))throw Error('引数はマイブロック内で使ってください。');break;
+ case 'var':variable(x.name);break;case 'param':if(owner===MAIN||![0,1].includes(x.index))throw Error('引数はマイブロック内で使ってください。');break;
  case 'op':if(![...OPS,'and','or'].includes(x.op))throw Error('未対応の演算です。');expr(x.a,owner,d+1);expr(x.b,owner,d+1);break;
  case 'math':if(!MATH.includes(x.fn))throw Error('未対応の数学関数です。');expr(x.value,owner,d+1);break;
  case 'clamp':for(const k of ['value','low','high'])expr(x[k],owner,d+1);break;case 'call':call(x,owner,d);break;
@@ -30,14 +30,14 @@ export function validateAdvanced(p){
  case 'while':e('condition');body(n.body,owner,d+1);break;case 'waitUntil':e('condition');break;
  case 'if':e('condition');body(n.then,owner,d+1);body(n.else??[],owner,d+1);break;
  case 'ifDistance':device(n.port,'distance');num(n.cm,4,200);body(n.then,owner,d+1);body(n.else??[],owner,d+1);break;
- case 'call':call(n,owner,0);break;case 'return':if(owner==='$main')throw Error('戻り値はマイブロック内だけで使えます。');e('value');break;
+ case 'call':call(n,owner,0);break;case 'return':if(owner===MAIN)throw Error('戻り値はマイブロック内だけで使えます。');e('value');break;
  case 'image':if(!['smile','heart','arrow','clear'].includes(n.image))throw Error('画像を確認してください。');break;
  case 'displayNumber':e('value');break;case 'pixel':e('x');e('y');e('value');break;
  case 'displayText':if(typeof n.text!=='string'||n.text.length>120||/[^\x20-\x7e]/.test(n.text))throw Error('文字表示は英数字・記号の定数120文字までです。');break;
  case 'light':if(!COLORS.includes(n.color))throw Error('ランプ色を確認してください。');break;case 'tone':e('hz');e('ms');e('volume');break;
  case 'timerReset':case 'end':case 'displayClear':case 'lightOff':case 'soundStop':break;default:throw Error('未対応の命令です: '+n.type);}}
  }
- body(p.body,'$main');for(const q of procs)body(q.body,q.name);
+ body(p.body,MAIN);for(const q of procs)body(q.body,q.name);
  const active=new Set();function dfs(n,depth){if(active.has(n))throw Error('再帰呼び出しには対応していません。');if(depth>16)throw Error('呼び出しは16段までです。');active.add(n);for(const t of edges.get(n))dfs(t,depth+1);active.delete(n);}for(const n of edges.keys())dfs(n,0);
  return {procs,devices,variables,ports};
 }
