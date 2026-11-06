@@ -79,6 +79,7 @@ jobs:
           node-version: '24'
       - run: npm test
       - run: npm install --no-save electron@45.2.1
+      - run: node node_modules/electron/install.js
       - run: python package-release.py
       - uses: actions/upload-artifact@v4
         with:
